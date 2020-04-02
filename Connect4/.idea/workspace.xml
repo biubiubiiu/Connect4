@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4523f45b-d679-432a-8133-66c3475f0de2" name="Default Changelist" comment="" />
+    <list default="true" id="4523f45b-d679-432a-8133-66c3475f0de2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Connect4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connect4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainWindow.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +19,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1ZwLpsPtsockbl83809jJS3pYq4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,10 +31,46 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/res" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\File\Connect4\Connect4\res" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainWindow">
+    <configuration name="ChessBoardWithColumnsAndRows" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.ChessBoardWithColumnsAndRows" />
+      <module name="Connect4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.MainWindow" />
+      <module name="Connect4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ref" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Ref" />
       <module name="Connect4" />
       <extension name="coverage">
         <pattern>
@@ -40,6 +85,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainWindow" />
+        <item itemvalue="Application.Ref" />
+        <item itemvalue="Application.ChessBoardWithColumnsAndRows" />
       </list>
     </recent_temporary>
   </component>
@@ -57,21 +104,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="12" key="GridCell.Tab.0.bottom" timestamp="1585803561312">
+    <state x="361" y="74" key="#Project_Structure" timestamp="1585811341065">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="12" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585803561312" />
-    <state width="1493" height="12" key="GridCell.Tab.0.center" timestamp="1585803561312">
+    <state x="361" y="74" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1585811341065" />
+    <state x="542" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585820646974">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="12" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585803561312" />
-    <state width="1493" height="12" key="GridCell.Tab.0.left" timestamp="1585803561312">
+    <state x="542" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1585820646974" />
+    <state x="571" y="304" width="393" height="220" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1585817056029">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="12" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585803561312" />
-    <state width="1493" height="12" key="GridCell.Tab.0.right" timestamp="1585803561312">
+    <state x="571" y="304" width="393" height="220" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1585817056029" />
+    <state x="487" y="128" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1585817381502">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="12" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585803561312" />
+    <state x="487" y="128" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1536.824@0.0.1536.824" timestamp="1585817381502" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1585823254530">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585823254530" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1585823254530">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585823254530" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1585823254530">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585823254530" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1585823254530">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585823254530" />
   </component>
 </project>
