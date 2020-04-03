@@ -5,6 +5,8 @@ import utils.MenuFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow {
 
@@ -34,7 +36,7 @@ public class MainWindow {
         jf.setContentPane(panelMain);
 
         //棋盘采用GridLayout布局
-        JPanel panelChessBoard = new Board();
+        Board panelChessBoard = new Board();
         //TODO 右边框暂时不能显示
         panelChessBoard.setBorder(BorderFactory.createEtchedBorder());  //给棋盘设置一个边框，还有其他边框格式供选择
 
@@ -50,13 +52,13 @@ public class MainWindow {
             btns[i] = new JButton("↓");
             panelButtons.add(btns[i]);
 
-//            final int t = i;
-//            btns[i].addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    //TODO:要与逻辑部分相结合
-//                }
-//            });
+            final int column = i;
+            btns[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    panelChessBoard.dropAt(column);
+                }
+            });
         }
 
         //将棋盘加到panelMain中并设置其格式
