@@ -57,6 +57,7 @@ public class MainWindow {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     panelChessBoard.dropAt(column);
+                    panelChessBoard.repaint();
                 }
             });
         }

@@ -16,8 +16,8 @@ public class Board extends JPanel {
 
     public static final int WIDTH = COL * OUTER_SQUARE_SIZE;
     public static final int HEIGHT = ROW * OUTER_SQUARE_SIZE;
-    public static final int CIRCLE_TOPLEFT_GAP = 15; // 圆外接矩形左上角的边距
-    public static final int CIRCLE_RADIUS = (OUTER_SQUARE_SIZE) - CIRCLE_TOPLEFT_GAP;
+    public static final int CIRCLE_TOPLEFT_GAP = 8; // 圆外接矩形左上角的边距
+    public static final int CIRCLE_RADIUS = (OUTER_SQUARE_SIZE) - (CIRCLE_TOPLEFT_GAP << 1);
 
     private static final Color bgColor1 = new Color(22, 120, 255);
     private static final Color bgColor2 = new Color(0, 160, 233);
@@ -41,15 +41,12 @@ public class Board extends JPanel {
 
             @Override
             public void dropAt(int column) {
-                int top = -1;
-                while (top < 5 && board[top + 1][column] == EMPTY) {
-                    top++;
+                int row = ROW-1;
+                while(row >= 0 && board[row][column] != EMPTY) {
+                    row--;
                 }
-                if (top == -1) {
-                    // 没有空位
-                    return;
-                }
-                board[top][column] = (currPlayer == 0) ? PLAYER_1 : PLAYER_2;
+                if(row == -1) return; // 没有空位
+                board[row][column] = (currPlayer == 0) ? PLAYER_1 : PLAYER_2;
                 currPlayer = (currPlayer + 1) & 1; // equals to (currPlayer+1)%2
             }
 
@@ -68,7 +65,7 @@ public class Board extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        int[][] boardStatus = core.getBoard();
+        int[][] boardStatus = core.getBoard();
         for (int r = 0; r < ROW; r++) {
             for (int c = 0; c < COL; c++) {
                 g.setColor(bgColor1);
@@ -78,12 +75,12 @@ public class Board extends JPanel {
                 g.fillRect((c * OUTER_SQUARE_SIZE + GAP), (r * OUTER_SQUARE_SIZE + GAP), INNER_SQUARE_SIZE, INNER_SQUARE_SIZE);
 
                 //TODO paint chesses
-//                if (boardStatus[r][c] == Core.EMPTY) {
-//                    g.setColor(chessColor1);
-//                } else {
-//                    g.setColor(boardStatus[r][c] == Core.PLAYER_1 ? chessColor2 : chessColor3);
-//                }
-//                g.fillOval(c * OUTER_SQUARE_SIZE + CIRCLE_TOPLEFT_GAP, r * OUTER_SQUARE_SIZE + CIRCLE_TOPLEFT_GAP, CIRCLE_RADIUS, CIRCLE_RADIUS);
+                if (boardStatus[r][c] == Core.EMPTY) {
+                    g.setColor(chessColor1);
+                } else {
+                    g.setColor(boardStatus[r][c] == Core.PLAYER_1 ? chessColor2 : chessColor3);
+                }
+                g.fillOval(c * OUTER_SQUARE_SIZE + CIRCLE_TOPLEFT_GAP, r * OUTER_SQUARE_SIZE + CIRCLE_TOPLEFT_GAP, CIRCLE_RADIUS, CIRCLE_RADIUS);
             }
         }
     }
