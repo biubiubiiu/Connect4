@@ -90,7 +90,7 @@ public class GameControlTest {
     public void resetPlayerTest2() {
         testObj.setCurrPlayer(Core.Player.PLAYER_2);
         testObj.reset();
-        assertEquals(Core.Player.PLAYER_2, testObj.getCurrPlayer());
+        assertEquals(Core.Player.PLAYER_1, testObj.getCurrPlayer());
     }
 
     @Test

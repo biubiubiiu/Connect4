@@ -17,8 +17,11 @@ public class GameControl implements Core {
 
     @Override
     public void dropAt(int column) {
+        if (Judge.judgeBorder(column, board[0].length) == false) {
+            return;
+        }
         int top = -1;
-        while (top < ROW - 1 && board[top + 1][column] == GridType.EMPTY.value()) {
+        while (top < board.length - 1 && board[top + 1][column] == GridType.EMPTY.value()) {
             top++;
         }
         if (top == -1) {
