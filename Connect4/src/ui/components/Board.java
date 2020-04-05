@@ -68,10 +68,11 @@ public class Board extends JPanel {
                 g.setColor(Color.BLACK);
                 g.fillRect((c * OUTER_SQUARE_SIZE), (r * OUTER_SQUARE_SIZE), OUTER_SQUARE_SIZE, OUTER_SQUARE_SIZE);
 
-                if ((r+c) % 2 != 0)
+                if ((r+c) % 2 != 0) {
                     g.setColor(bgColor1);
-                else
+                } else {
                     g.setColor(bgColor2);
+                }
                 g.fillRect((c * OUTER_SQUARE_SIZE + GAP), (r * OUTER_SQUARE_SIZE + GAP), INNER_SQUARE_SIZE, INNER_SQUARE_SIZE);
 
                 //TODO paint chesses

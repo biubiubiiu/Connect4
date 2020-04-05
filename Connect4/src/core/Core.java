@@ -7,7 +7,7 @@ public interface Core {
 
     // 如果要自定义棋盘大小，可以把这两行放入接口 Core 中，并增加获取棋盘大小的方法
     int ROW = 6;
-    int COL = 6;
+    int COL = 7;
 
     //游戏状态
     int WIN = 1;

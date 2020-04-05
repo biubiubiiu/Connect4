@@ -39,13 +39,14 @@ public class MainWindow {
         //棋盘采用GridLayout布局
         Board panelChessBoard = new Board();
         //TODO 右边框暂时不能显示
-        panelChessBoard.setBorder(BorderFactory.createEtchedBorder());  //给棋盘设置一个边框，还有其他边框格式供选择
+        //给棋盘设置一个边框，还有其他边框格式供选择
+        panelChessBoard.setBorder(BorderFactory.createEtchedBorder());
 
         //按键采用GridLayout布局
         //按键设置为后期棋盘尺寸变化预留了空间，但是相关界面设置是固定值，待后期修改
         //按键尺寸可调，考虑用图片做背景
         GridLayout gridLayoutForButtons = new GridLayout(1, boardSize);
-        gridLayoutForButtons.setHgap(Board.GAP<<1);
+        gridLayoutForButtons.setHgap(Board.GAP << 1);
         JPanel panelButtons = new JPanel(gridLayoutForButtons);
         panelButtons.setPreferredSize(new Dimension(Board.WIDTH, 30));
         JButton[] btns = new JButton[boardSize];
@@ -58,19 +59,20 @@ public class MainWindow {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     panelChessBoard.dropAt(column);
+                    panelChessBoard.repaint();
 
-                    switch (panelChessBoard.getGameStatus()){
+                    switch (panelChessBoard.getGameStatus()) {
                         case Core.WIN:
                             //TODO: 弹出相应提示，结束游戏
                             System.out.println("win!");
+                            JOptionPane.showMessageDialog(null, panelChessBoard.getCurrPlayer() + " wins!");
                             break;
                         case Core.FAIL:
                             //TODO: 弹出相应提示，结束游戏
                             System.out.println("fail!");
+                            JOptionPane.showMessageDialog(null, "Draw!");
                             break;
                         default:
-                            //重绘一下
-                            panelChessBoard.repaint();
                             //交换玩家
                             panelChessBoard.switchPlayer();
                             break;
