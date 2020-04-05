@@ -1,5 +1,6 @@
 package ui;
 
+import core.Core;
 import ui.components.Board;
 import utils.MenuFactory;
 
@@ -57,7 +58,23 @@ public class MainWindow {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     panelChessBoard.dropAt(column);
-                    panelChessBoard.repaint();
+
+                    switch (panelChessBoard.getGameStatus()){
+                        case Core.WIN:
+                            //TODO: 弹出相应提示，结束游戏
+                            System.out.println("win!");
+                            break;
+                        case Core.FAIL:
+                            //TODO: 弹出相应提示，结束游戏
+                            System.out.println("fail!");
+                            break;
+                        default:
+                            //重绘一下
+                            panelChessBoard.repaint();
+                            //交换玩家
+                            panelChessBoard.switchPlayer();
+                            break;
+                    }
                 }
             });
         }
