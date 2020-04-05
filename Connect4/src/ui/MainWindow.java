@@ -1,29 +1,35 @@
 package ui;
 
-import core.Core;
 import ui.components.Board;
 import utils.MenuFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainWindow {
 
-    static final int windowWidth = 850;
-    static final int windowHeight = 800;     //窗口大小参数
+    /**
+     * 窗口大小参数
+     */
+    static final int WINDOW_WIDTH = 850;
+    static final int WINDOW_HEIGHT = 800;
 
-    static final int boardSize = 7;          //棋盘大小参数
+    /**
+     * 棋盘列数
+     */
+    static final int BOARD_SIZE = 7;
 
-    static final int gapHorizontal = 5;
-    static final int gapVertical = 4;        //窗口四周间隙参数
+    /**
+     * 窗口四周间隙参数
+     */
+    static final int GAP_HORIZONTAL = 5;
+    static final int GAP_VERTICAL = 4;
 
     public static void main(String[] args) {
         JFrame jf = new JFrame("测试窗口");
-        jf.setSize(windowWidth, windowHeight);
+        jf.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jf.setResizable(false);     //设置窗口大小固定
+        jf.setResizable(false);
         jf.setLocationRelativeTo(null);
 
         // 添加菜单栏
@@ -36,47 +42,45 @@ public class MainWindow {
         JPanel panelMain = new JPanel(springLayout);
         jf.setContentPane(panelMain);
 
-        //棋盘采用GridLayout布局
         Board panelChessBoard = new Board();
+
         //TODO 右边框暂时不能显示
-        //给棋盘设置一个边框，还有其他边框格式供选择
         panelChessBoard.setBorder(BorderFactory.createEtchedBorder());
 
         //按键采用GridLayout布局
         //按键设置为后期棋盘尺寸变化预留了空间，但是相关界面设置是固定值，待后期修改
         //按键尺寸可调，考虑用图片做背景
-        GridLayout gridLayoutForButtons = new GridLayout(1, boardSize);
+        GridLayout gridLayoutForButtons = new GridLayout(1, BOARD_SIZE);
         gridLayoutForButtons.setHgap(Board.GAP << 1);
         JPanel panelButtons = new JPanel(gridLayoutForButtons);
         panelButtons.setPreferredSize(new Dimension(Board.WIDTH, 30));
-        JButton[] btns = new JButton[boardSize];
-        for (int i = 0; i < boardSize; i++) {
+        JButton[] btns = new JButton[BOARD_SIZE];
+        for (int i = 0; i < BOARD_SIZE; i++) {
             btns[i] = new JButton("↓");
             panelButtons.add(btns[i]);
 
             final int column = i;
-            btns[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    panelChessBoard.dropAt(column);
-                    panelChessBoard.repaint();
+            btns[i].addActionListener(e -> {
+                panelChessBoard.dropAt(column);
+                panelChessBoard.repaint();
 
-                    switch (panelChessBoard.getGameStatus()) {
-                        case Core.WIN:
-                            //TODO: 弹出相应提示，结束游戏
-                            System.out.println("win!");
-                            JOptionPane.showMessageDialog(null, panelChessBoard.getCurrPlayer() + " wins!");
-                            break;
-                        case Core.FAIL:
-                            //TODO: 弹出相应提示，结束游戏
-                            System.out.println("fail!");
-                            JOptionPane.showMessageDialog(null, "Draw!");
-                            break;
-                        default:
-                            //交换玩家
-                            panelChessBoard.switchPlayer();
-                            break;
-                    }
+                switch (panelChessBoard.getGameStatus()) {
+                    case WIN:
+                        //TODO: 弹出相应提示，结束游戏
+                        System.out.println("win!");
+                        JOptionPane.showMessageDialog(null, panelChessBoard.getCurrPlayer() + " wins!");
+                        break;
+                    case FAIL:
+                        //TODO: 弹出相应提示，结束游戏
+                        System.out.println("fail!");
+                        JOptionPane.showMessageDialog(null, "Draw!");
+                        break;
+                    case CONTINUE:
+                        //交换玩家
+                        panelChessBoard.switchPlayer();
+                        break;
+                    default:
+                        break;
                 }
             });
         }
@@ -85,13 +89,13 @@ public class MainWindow {
         //棋盘暂定为固定大小
         panelMain.add(panelChessBoard);
         SpringLayout.Constraints panelChessBoardCons = springLayout.getConstraints(panelChessBoard);
-        panelChessBoardCons.setX(Spring.constant(gapHorizontal));
-        panelChessBoardCons.setY(Spring.constant(gapVertical));
+        panelChessBoardCons.setX(Spring.constant(GAP_HORIZONTAL));
+        panelChessBoardCons.setY(Spring.constant(GAP_VERTICAL));
 
         //TODO 通过Board中提供的大小参数，计算按键的间隔和宽度
         panelMain.add(panelButtons);
         SpringLayout.Constraints panelButtonsCons = springLayout.getConstraints(panelButtons);
-        panelButtonsCons.setX(Spring.constant(gapHorizontal));
+        panelButtonsCons.setX(Spring.constant(GAP_HORIZONTAL));
         panelButtonsCons.setY(
                 // padding-top: 20
                 Spring.sum(

@@ -21,9 +21,9 @@ public class Board extends JPanel {
     //TODO 下面几个颜色有点丑，后期再换
     private static final Color chessColor1 = Color.BLACK;
     private static final Color chessColor2 = Color.WHITE;
-    //private static final Color chessColor3 = Color.RED;
 
-    private Core core;  // 通过此接口与核心交互
+    // 与核心逻辑的接口
+    private Core core;
 
     public Board() {
         super();
@@ -68,7 +68,7 @@ public class Board extends JPanel {
                 g.setColor(Color.BLACK);
                 g.fillRect((c * OUTER_SQUARE_SIZE), (r * OUTER_SQUARE_SIZE), OUTER_SQUARE_SIZE, OUTER_SQUARE_SIZE);
 
-                if ((r+c) % 2 != 0) {
+                if ((r + c) % 2 != 0) {
                     g.setColor(bgColor1);
                 } else {
                     g.setColor(bgColor2);
@@ -76,8 +76,8 @@ public class Board extends JPanel {
                 g.fillRect((c * OUTER_SQUARE_SIZE + GAP), (r * OUTER_SQUARE_SIZE + GAP), INNER_SQUARE_SIZE, INNER_SQUARE_SIZE);
 
                 //TODO paint chesses
-                if (boardStatus[r][c] != Core.EMPTY) {
-                    g.setColor(boardStatus[r][c] == Core.PLAYER_1 ? chessColor1 : chessColor2);
+                if (boardStatus[r][c] != Core.GridType.EMPTY.value()) {
+                    g.setColor(boardStatus[r][c] == Core.GridType.PLAYER_1.value() ? chessColor1 : chessColor2);
                     g.fillOval(c * OUTER_SQUARE_SIZE + CIRCLE_TOPLEFT_GAP,
                             r * OUTER_SQUARE_SIZE + CIRCLE_TOPLEFT_GAP, CIRCLE_RADIUS, CIRCLE_RADIUS);
                 }
@@ -90,7 +90,7 @@ public class Board extends JPanel {
         this.core.dropAt(column);
     }
 
-    public int getGameStatus() {
+    public Core.Status getGameStatus() {
         return this.core.getGameStatus();
     }
 
@@ -98,7 +98,7 @@ public class Board extends JPanel {
         this.core.switchPlayer();
     }
 
-    public int getCurrPlayer() {
+    public Core.Player getCurrPlayer() {
         return this.core.getCurrPlayer();
     }
 

@@ -2,35 +2,34 @@ package core;
 
 public class GameControl implements Core {
     private int[][] board;
-    private int currPlayer;
-    private int gameState;   //游戏状态，见Core
+    private Player currPlayer;
+    private Status gameState;
 
     public GameControl() {
         this.board = new int[ROW][COL];
 
         //默认从第一个玩家开始
-        this.currPlayer = PLAYER_1;
+        this.currPlayer = Player.PLAYER_1;
 
-        this.gameState = CONTINUE;
+        this.gameState = Status.CONTINUE;
     }
 
 
     @Override
     public void dropAt(int column) {
         int top = -1;
-        while (top < ROW - 1 && board[top + 1][column] == EMPTY) {
+        while (top < ROW - 1 && board[top + 1][column] == GridType.EMPTY.value()) {
             top++;
         }
         if (top == -1) {
             // 没有空位
             return;
         }
-        board[top][column] = currPlayer;
+        board[top][column] = GridType.of(currPlayer);
 
         printBoard(this.board);
 
-//        this.gameState = Judge.judge(this.board, this.currPlayer, top, column, ROW);
-        //每次落子后判断一次游戏状态
+        // 每次落子后判断一次游戏状态
         // (top, column) 为本次落子位置
         this.gameState = Judge.judge(this.board, top, column);
     }
@@ -41,30 +40,51 @@ public class GameControl implements Core {
     }
 
     @Override
-    public int getGameStatus() {
+    public Status getGameStatus() {
         return this.gameState;
     }
 
     @Override
-    public int getCurrPlayer() {
+    public Player getCurrPlayer() {
         return this.currPlayer;
+    }
+
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
+
+    public void setCurrPlayer(Player currPlayer) {
+        this.currPlayer = currPlayer;
+    }
+
+    public void setGameState(Status gameState) {
+        this.gameState = gameState;
     }
 
     @Override
     public void reset() {
-        for (int i = 0; i < ROW; i++) {
-            for (int j = 0; j < COL; j++) {
-                this.board[i][j] = EMPTY;
+        resetBoard();
+        resetPlayer();
+    }
+
+    private void resetBoard() {
+        if (board.length == 0) {
+            return;
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                this.board[i][j] = GridType.EMPTY.value();
             }
         }
-        //这里是不是可以重新建一个数组效率高点
-        //重建一个数组涉及到重新申请内存+释放原有内存，会更耗时
-        this.currPlayer = PLAYER_1;
+    }
+
+    private void resetPlayer() {
+        this.currPlayer = Player.PLAYER_1;
     }
 
     @Override
     public void switchPlayer() {
-        this.currPlayer = 1 + (this.currPlayer & 1);
+        this.currPlayer = currPlayer.next();
     }
 
     private static void printBoard(int[][] board) {
