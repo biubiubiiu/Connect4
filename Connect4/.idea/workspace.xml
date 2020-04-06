@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4523f45b-d679-432a-8133-66c3475f0de2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connect4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connect4.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Judge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Judge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/core/JudgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/core/JudgeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/components/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/components/CountdownTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/CountdownTimer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,7 +67,20 @@
       <recent name="D:\File\Connect4\Connect4\res" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.JudgeTest">
+  <component name="RunManager" selected="Application.MainWindow">
+    <configuration name="MainWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.MainWindow" />
+      <module name="Connect4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JudgeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
       <extension name="coverage">
@@ -78,22 +92,6 @@
       <option name="PACKAGE_NAME" value="core" />
       <option name="MAIN_CLASS_NAME" value="core.JudgeTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="JudgeTest.judgeTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Connect4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.JudgeTest" />
-      <option name="METHOD_NAME" value="judgeTest1" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,11 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainWindow" />
         <item itemvalue="JUnit.JudgeTest" />
         <item itemvalue="JUnit.JudgeTest.judgeTest9" />
         <item itemvalue="JUnit.JudgeTest.judgeTest6" />
         <item itemvalue="JUnit.JudgeTest.judgeTest5" />
-        <item itemvalue="JUnit.JudgeTest.judgeTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -186,10 +184,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1585820646974" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1586113688079">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1586166010137">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586113688079" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586166010137" />
     <state x="571" y="304" width="393" height="220" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1585817056029">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -210,22 +208,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586137765866" />
-    <state width="1493" height="172" key="GridCell.Tab.0.bottom" timestamp="1586161244949">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1586166817558">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586161244949" />
-    <state width="1493" height="172" key="GridCell.Tab.0.center" timestamp="1586161244948">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586166817558" />
+    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1586166817558">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586161244948" />
-    <state width="1493" height="172" key="GridCell.Tab.0.left" timestamp="1586161244947">
+    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586166817558" />
+    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1586166817558">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586161244947" />
-    <state width="1493" height="172" key="GridCell.Tab.0.right" timestamp="1586161244949">
+    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586166817558" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1586166817558">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586161244949" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586166817558" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1586074194182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -260,10 +258,10 @@
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1586112139391" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Connect4$GameControlTest_dropAtTest1.ic" NAME="GameControlTest.dropAtTest1 Coverage Results" MODIFIED="1586116360710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Connect4$GameControlTest.ic" NAME="GameControlTest Coverage Results" MODIFIED="1586116411393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>core.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Connect4$GameControlTest.ic" NAME="GameControlTest Coverage Results" MODIFIED="1586116411393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Connect4$GameControlTest_dropAtTest1.ic" NAME="GameControlTest.dropAtTest1 Coverage Results" MODIFIED="1586116360710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>core.*</FILTER>
     </SUITE>
   </component>

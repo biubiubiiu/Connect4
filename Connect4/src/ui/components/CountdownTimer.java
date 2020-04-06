@@ -5,7 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class CountdownTimer extends JPanel {
+public class CountdownTimer extends JPanel {
+
+    public interface timeoutCallback {
+        public void run();
+    }
+
     private static final int COUNTDOWN = 15000; // 15000ms
     private static final int ONE_SEC = 1000;
     private int current;
@@ -70,8 +75,4 @@ class CountdownTimer extends JPanel {
         frame.add(new CountdownTimer());
         frame.setVisible(true);
     }
-}
-
-interface timeoutCallback {
-    public void run();
 }

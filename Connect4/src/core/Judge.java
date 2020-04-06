@@ -3,18 +3,21 @@ package core;
 /**
  * 将各种判定函数独立出来
  * 写在一个单独的类里
- */
-
-/**
- * 2020-04-05 15:51 修改记录：
- * 1. 重写了 {@link #judgeSuccess(int[][], int, int)} 方法
- * 2. 重写了 {@link #judge(int[][], int, int)} 方法
+ *
+ * 核心方法：
+ * 1. {@link #judge(int[][], int, int)} 判定当前游戏状态
+ * 2. {@link #judgeSuccess(int[][], int, int)} 判断是否有一方连成四子
+ * 3. {@link #judgeFail(int[][])} 判断棋盘是否为满
+ * 4. {@link #judgeBorder(int, int)} 判断落子列是否在边界范围内
  */
 
 public class Judge {
 
-    // 判断是否全填满
-    // 未填满false，填满true
+    /**
+     * 判断棋盘是否全部填满
+     * @param board 棋盘状态
+     * @return false：为填满；true：填满
+     */
     private static boolean judgeFail(int[][] board) {
         for (int i = 0; i < Core.ROW; i++) {
             for (int j = 0; j < Core.COL; j++) {
@@ -27,10 +30,7 @@ public class Judge {
     }
 
     public static boolean judgeBorder(int x, int size) {
-        if (x >= size || x < 0) {
-            return false;
-        }
-        return true;
+        return x < size && x >= 0;
     }
 
     /**
@@ -73,8 +73,7 @@ public class Judge {
             return false;
         }
 
-        for (int dirc = 0; dirc < 4; dirc++) {
-            int count = count(board, dirc, r, c);
+        for (int dirc = 0; dirc < dr.length; dirc++) {
             if (count(board, dirc, r, c) >= 4) {
                 return true;
             }
@@ -89,7 +88,7 @@ public class Judge {
      * @param dirc  表示扩展方向，与 dr,dc的下标一致
      * @param r     棋子所在行
      * @param c     棋子所在列
-     * @return
+     * @return 以(r, c)为中心的最大连续棋子数
      */
     private static int count(int[][] board, int dirc, int r, int c) {
         // nr, nc表示下一个查看位置
