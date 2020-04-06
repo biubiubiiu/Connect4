@@ -42,10 +42,10 @@ public class Judge {
      * @return 游戏状态
      */
     public static Core.Status judge(int[][] board, int r, int c) {
-        if (judgeFail(board)) {
-            return Core.Status.FAIL;
-        } else if (judgeSuccess(board, r, c)) {
+        if (judgeSuccess(board, r, c)) {
             return Core.Status.WIN;
+        } else if (judgeFail(board)) {
+            return Core.Status.FAIL;
         }
         return Core.Status.CONTINUE;
     }
@@ -69,13 +69,12 @@ public class Judge {
      * @return 当前落子后，是否连成四子
      */
     private static boolean judgeSuccess(int[][] board, int r, int c) {
-//        System.out.println("checking (" + r + "," + c + ")");
         if (board.length == 0 || board.length < 4 && board[0].length < 4) {
             return false;
         }
+
         for (int dirc = 0; dirc < 4; dirc++) {
             int count = count(board, dirc, r, c);
-//            System.out.println(count + " continual chesses at dirc " + dirc);
             if (count(board, dirc, r, c) >= 4) {
                 return true;
             }
