@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4523f45b-d679-432a-8133-66c3475f0de2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Core.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/ArchiveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ArchiveManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/utils/ArchiveManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils/ArchiveManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +53,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="core" />
       <recent name="utils" />
+      <recent name="core" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ui" />
@@ -75,20 +73,7 @@
       <recent name="D:\File\Connect4\Connect4" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainWindow">
-    <configuration name="CountdownTimer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.components.CountdownTimer" />
-      <module name="Connect4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ui.components.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ArchiveManagerTest.saveArchiveTest2">
     <configuration name="MainWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.MainWindow" />
       <module name="Connect4" />
@@ -102,45 +87,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.components.PlayerPanel" />
+    <configuration name="ArchiveManagerTest.getJsonObjectTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ui.components.*" />
+          <option name="PATTERN" value="utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="utils" />
+      <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
+      <option name="METHOD_NAME" value="getJsonObjectTest1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JudgeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArchiveManagerTest.loadArchiveTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ui.*" />
+          <option name="PATTERN" value="utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.JudgeTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="utils" />
+      <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
+      <option name="METHOD_NAME" value="loadArchiveTest2" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JudgeTest.judgeTest9" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArchiveManagerTest.loadJsonObjectTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ui.*" />
+          <option name="PATTERN" value="utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.JudgeTest" />
-      <option name="METHOD_NAME" value="judgeTest9" />
+      <option name="PACKAGE_NAME" value="utils" />
+      <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
+      <option name="METHOD_NAME" value="loadJsonObjectTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArchiveManagerTest.saveArchiveTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Connect4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="utils" />
+      <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
+      <option name="METHOD_NAME" value="saveArchiveTest2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ArchiveManagerTest.saveArchiveTest2" />
+        <item itemvalue="JUnit.ArchiveManagerTest.loadArchiveTest2" />
+        <item itemvalue="JUnit.ArchiveManagerTest.loadJsonObjectTest1" />
         <item itemvalue="Application.MainWindow" />
-        <item itemvalue="JUnit.JudgeTest" />
-        <item itemvalue="Application.CountdownTimer" />
-        <item itemvalue="Application.PlayerPanel" />
-        <item itemvalue="JUnit.JudgeTest.judgeTest9" />
+        <item itemvalue="JUnit.ArchiveManagerTest.getJsonObjectTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -186,10 +191,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1585820646974" />
-    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser" timestamp="1586276986388">
+    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser" timestamp="1586278860406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586276986388" />
+    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586278860406" />
     <state x="499" y="218" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1586271643311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -222,38 +227,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586270713026" />
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1586277600802">
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586277600802" />
-    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1586277600801">
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586277600801" />
-    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1586277600801">
+    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586277600801" />
-    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1586277600801">
+    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586277600801" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1586275503918">
+    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586275503918" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1586275503918">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1586275503918" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1586275503918">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1586275503918" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1586275503918">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1586282926744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1586275503918" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1586282926744" />
     <state x="229" y="0" key="SettingsEditor" timestamp="1586270776728">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -262,18 +267,29 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1586270795004" />
-    <state x="861" y="150" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1586278088945">
+    <state x="861" y="150" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1586281805467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="861" y="150" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1586278088945" />
+    <state x="861" y="150" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1586281805467" />
     <state x="178" y="22" key="new project wizard" timestamp="1586258507209">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="178" y="22" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1586258507209" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1586280143700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586280143700" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586112139391">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1586112139391" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((ArchiveManagerTest)this.this$0).core" custom="utils.ArchiveManagerTest,core.Core" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Connect4$GameControlTest.ic" NAME="GameControlTest Coverage Results" MODIFIED="1586116411393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

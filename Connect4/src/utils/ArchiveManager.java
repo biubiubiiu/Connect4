@@ -9,6 +9,11 @@ import core.Core;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * 存档管理类
+ *
+ * @author Raymond Wong
+ */
 public class ArchiveManager {
 
     public static final String BOARD = "board";
@@ -51,7 +56,7 @@ public class ArchiveManager {
     }
 
     public static void loadJsonObject(JSONObject object, Core core) throws RuntimeException {
-        if (core == null) {
+        if (core == null || object == null) {
             throw new RuntimeException("内部错误");
         }
         int[][] savedBoard = new int[Core.ROW][Core.COL];
@@ -68,12 +73,23 @@ public class ArchiveManager {
                 throw new RuntimeException("存档信息不正确，无法读取");
             }
             for (int j = 0; j < arr.size(); j++) {
-                savedBoard[i][j] = (int) arr.get(j);
+                int type = arr.getInteger(j);
+                if (type != Core.GridType.EMPTY.value() && type != Core.GridType.PLAYER_1.value() && type != Core.GridType.PLAYER_2.value()) {
+                    throw new RuntimeException("存档信息不正确，无法读取");
+                }
+                savedBoard[i][j] = arr.getInteger(j);
             }
         }
 
         int playerNum = object.getInteger(CURRENT_PLAYER);
+        if (playerNum != Core.Player.PLAYER_1.value() && playerNum != Core.Player.PLAYER_2.value()) {
+            throw new RuntimeException("存档信息不正确，无法读取");
+        }
+
         int status = object.getInteger(STATUS);
+        if (status != Core.Status.WIN.value() && status != Core.Status.FAIL.value() || status != Core.Status.CONTINUE.value()) {
+            throw new RuntimeException("存档信息不正确，无法读取");
+        }
 
         core.setCurrPlayer(Core.Player.of(playerNum));
         core.setGameState(Core.Status.of(status));
@@ -107,12 +123,16 @@ public class ArchiveManager {
     }
 
     public static CommonReturnType loadArchive(Core core) {
-        File file = new File(PATH);
+        return loadArchive(core, PATH);
+    }
+
+    public static CommonReturnType loadArchive(Core core, String path) {
+        File file = new File(path);
         if (!file.exists()) {
             return new CommonReturnType(CommonReturnType.FAIL, "没有找到存档文件");
         }
         try {
-            JSONObject obj = JSON.parseObject(File2String(PATH));
+            JSONObject obj = JSON.parseObject(File2String(path));
             loadJsonObject(obj, core);
         } catch (RuntimeException e) {
             return new CommonReturnType(CommonReturnType.FAIL, "加载失败");
@@ -121,12 +141,15 @@ public class ArchiveManager {
     }
 
     public static CommonReturnType saveArchive(Core core) {
-        File file = new File(PATH);
+        return saveArchive(core, PATH);
+    }
+
+    public static CommonReturnType saveArchive(Core core, String path) {
+        File file = new File(path);
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
                 return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
             }
         }
@@ -137,7 +160,6 @@ public class ArchiveManager {
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(bytes);
         } catch (RuntimeException | IOException e) {
-            e.printStackTrace();
             return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
         } finally {
             if (fileOutputStream != null) {
