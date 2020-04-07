@@ -35,11 +35,11 @@ public class BtnGroup extends JPanel {
 
                 switch (connectedBoard.getGameStatus()) {
                     case WIN:
-                        System.out.println("win!");
+                        //System.out.println("win!");
                         JOptionPane.showMessageDialog(null, connectedBoard.getCurrPlayer() + " wins!");
                         break;
                     case FAIL:
-                        System.out.println("fail!");
+                        //System.out.println("fail!");
                         JOptionPane.showMessageDialog(null, "Draw!");
                         break;
                     case CONTINUE:

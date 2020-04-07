@@ -21,7 +21,7 @@ public class PlayerPanel extends JPanel {
         setBorder(border1);
 
         ImageIcon img_1 = new ImageIcon(".\\res\\player.png");
-        img_1.setImage(img_1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        img_1.setImage(img_1.getImage().getScaledInstance(45, 45, Image.SCALE_DEFAULT));
         icon = new JLabel(img_1);
 
         ImageIcon img_2 = new ImageIcon(".\\res\\chess.png");

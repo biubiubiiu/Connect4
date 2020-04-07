@@ -23,7 +23,8 @@ public class CountdownTimer extends JPanel {
 
     public CountdownTimer() {
         super();
-        //start = new JButton("Start");
+        this.setPreferredSize(new Dimension(50, 50));
+
         display = new JLabel(timeFormat(COUNTDOWN));
         timer = new Timer(ONE_SEC, new ActionListener() {
             @Override
@@ -37,7 +38,10 @@ public class CountdownTimer extends JPanel {
             }
         });
         timer.setRepeats(true);
+        display.setOpaque(false);
 
+        display.setHorizontalAlignment(SwingConstants.CENTER);
+        this.setLayout(new BorderLayout());
         this.add(display);
     }
 
@@ -56,4 +60,11 @@ public class CountdownTimer extends JPanel {
         this.callback = callback;
     }
 
+    //绘制背景图片
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon img = new ImageIcon(".\\res\\clock.png");
+        g.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+    }
 }

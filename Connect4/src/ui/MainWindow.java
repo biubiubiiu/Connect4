@@ -48,7 +48,14 @@ public class MainWindow {
 
         //计时器组件
         CountdownTimer timeDisplay = new CountdownTimer();
-        timeDisplay.setTimeoutCallback(() -> JOptionPane.showMessageDialog(null, panelChessBoard.getCurrPlayer() + " 超时了!")
+        timeDisplay.setTimeoutCallback(() -> {
+            JOptionPane.showMessageDialog(null,
+                    panelChessBoard.getCurrPlayer() + " 超时了!");
+            panelChessBoard.switchPlayer();
+            players[0].switchStatus();
+            players[1].switchStatus();
+            timeDisplay.restartCountdown();
+                }
         );
 
         // 按键组
