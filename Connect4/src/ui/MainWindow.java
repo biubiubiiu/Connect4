@@ -8,7 +8,7 @@ import utils.ArchiveManager;
 
 import javax.swing.*;
 
-public class MainWindow {
+public class MainWindow extends JFrame {
 
     /**
      * 窗口大小参数
@@ -22,45 +22,63 @@ public class MainWindow {
     static final int GAP_HORIZONTAL = 5;
     static final int GAP_VERTICAL = 4;
 
-    public static void main(String[] args) {
-        JFrame jf = new JFrame("Connect4");
-        jf.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jf.setResizable(false);
-        jf.setLocationRelativeTo(null);
+    private JPanel panelMain;
+    private Board panelChessBoard;
+    private PlayerPanel[] players;
+    private CountdownTimer timeDisplay;
+    private BtnGroup panelButtons;
+    private MenuBar menuBar;
 
+    public MainWindow() {
+        super("Connect4");
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+
+        initComponents();
+        initLayout();
+        initEventHandler();
+
+        //开始计时
+        timeDisplay.restartCountdown();
+    }
+
+    /**
+     * 初始化各组件
+     */
+    private void initComponents() {
         //主体选用SpringLayout布局
-        SpringLayout springLayout = new SpringLayout();
-        JPanel panelMain = new JPanel(springLayout);
-        jf.setContentPane(panelMain);
+        panelMain = new JPanel(new SpringLayout());
+        this.setContentPane(panelMain);
 
         // 棋盘组件
-        Board panelChessBoard = new Board();
+        panelChessBoard = new Board();
         panelChessBoard.setCore(new GameControl());
 
         // 玩家信息组件
-        PlayerPanel[] players = new PlayerPanel[2];
+        players = new PlayerPanel[2];
         players[0] = new PlayerPanel("Player 1");
         players[1] = new PlayerPanel("Player 2");
-
         //玩家1先手
         players[0].switchStatus();
 
         //计时器组件
-        CountdownTimer timeDisplay = new CountdownTimer();
-        timeDisplay.setTimeoutCallback(() -> {
-                    JOptionPane.showMessageDialog(null,
-                            panelChessBoard.getCore().getCurrPlayer() + " 超时了!");
-                    panelChessBoard.getCore().switchPlayer();
-                    players[0].switchStatus();
-                    players[1].switchStatus();
-                    timeDisplay.restartCountdown();
-                }
-        );
+        timeDisplay = new CountdownTimer();
 
         // 按键组
-        BtnGroup panelButtons = new BtnGroup(panelChessBoard, players, timeDisplay);
+        panelButtons = new BtnGroup(panelChessBoard);
 
+        // 添加菜单栏
+        menuBar = new MenuBar();
+        this.setJMenuBar(menuBar);
+    }
+
+    /**
+     * 设置各组件位置
+     */
+    private void initLayout() {
+        SpringLayout springLayout = (SpringLayout) panelMain.getLayout();
         //将棋盘加到panelMain中并设置其格式
         panelMain.add(panelChessBoard);
         SpringLayout.Constraints panelChessBoardCons = springLayout.getConstraints(panelChessBoard);
@@ -119,14 +137,25 @@ public class MainWindow {
                         Spring.constant(20)
                 )
         );
+    }
 
-        // 添加菜单栏
-        MenuBar menuBar = new MenuBar();
+    /**
+     * 设置各组件的事件处理方法
+     */
+    private void initEventHandler() {
+        timeDisplay.setTimeoutCallback(() -> {
+                    JOptionPane.showMessageDialog(null,
+                            panelChessBoard.getCore().getCurrPlayer() + " 超时了!");
+                    panelChessBoard.getCore().setGameState(Core.Status.FAIL);
+                }
+        );
+
         menuBar.setHandler(new MenuBar.MenuBarEvent() {
             @Override
             public void newGame() {
                 panelChessBoard.getCore().reset();
                 panelChessBoard.repaint();
+                panelButtons.enableBtns();
                 players[0].reset();
                 players[1].reset();
                 players[0].switchStatus();
@@ -136,14 +165,20 @@ public class MainWindow {
             @Override
             public void saveGame() {
                 CommonReturnType result = ArchiveManager.saveArchive(panelChessBoard.getCore());
-                JOptionPane.showMessageDialog(null, result.getMessage());
+                if (result.getStatus() == CommonReturnType.FAIL) {
+                    JOptionPane.showMessageDialog(null, result.getMessage(), "save", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, result.getMessage());
+                }
             }
 
             @Override
             public void loadArchive() {
                 CommonReturnType result = ArchiveManager.loadArchive(panelChessBoard.getCore());
-                JOptionPane.showMessageDialog(null, result.getMessage());
-                if (result.getStatus() == CommonReturnType.SUCCESS) {
+                if (result.getStatus() == CommonReturnType.FAIL) {
+                    JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, result.getMessage());
                     timeDisplay.restartCountdown();
                     panelChessBoard.repaint();
                 }
@@ -166,10 +201,12 @@ public class MainWindow {
                 case WIN:
                     timeDisplay.stopCountdown();
                     JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
+                    panelButtons.disableBtns();
                     break;
                 case FAIL:
                     timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, "Draw!");
+                    JOptionPane.showMessageDialog(null, "It's a Draw!");
+                    panelButtons.disableBtns();
                     break;
                 case CONTINUE:
                     //交换玩家
@@ -182,13 +219,11 @@ public class MainWindow {
                     break;
             }
         });
+    }
 
 
-        jf.setJMenuBar(menuBar);
-
-        jf.setVisible(true);
-
-        //开始计时
-        timeDisplay.restartCountdown();
+    public static void main(String[] args) {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.setVisible(true);
     }
 }

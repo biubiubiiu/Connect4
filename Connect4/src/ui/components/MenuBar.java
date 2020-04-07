@@ -7,12 +7,24 @@ public class MenuBar extends JMenuBar {
 
     /* 在此添加菜单事件 */
     public interface MenuBarEvent {
+        /**
+         * 新游戏
+         */
         void newGame();
 
+        /**
+         * 存档
+         */
         void saveGame();
 
+        /**
+         * 读档
+         */
         void loadArchive();
 
+        /**
+         * 退游
+         */
         void exit();
     }
 
@@ -37,12 +49,8 @@ public class MenuBar extends JMenuBar {
                 handler.newGame();
             }
         });
-        addMenu(start, "Save", e -> {
-            handler.saveGame();
-        });
-        addMenu(start, "Load", e -> {
-            handler.loadArchive();
-        });
+        addMenu(start, "Save", e -> handler.saveGame());
+        addMenu(start, "Load", e -> handler.loadArchive());
         addMenu(start, "Exit", e -> {
             int choice = JOptionPane.showOptionDialog(null,
                     "You really want to quit?",
@@ -56,6 +64,13 @@ public class MenuBar extends JMenuBar {
             }
         });
         this.add(start);
+
+        JMenu help = new JMenu("Help");
+        addMenu(help, "How to play", e-> JOptionPane.showMessageDialog(null,
+                "Click on the buttons or press 1-7 on your keyboard to insert a new checker."
+                        + "\nTo win you must place 4 checkers in an row, horizontally, vertically or diagonally.",
+                "How to Play", JOptionPane.INFORMATION_MESSAGE));
+        this.add(help);
     }
 
     /**

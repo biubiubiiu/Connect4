@@ -4,6 +4,7 @@ public interface Core {
     enum GridType {
         /**
          * 表示棋盘上某个位置的状态
+         *
          * EMPTY: 未落子
          * PLAYER_1: 玩家1落子
          * PLAYER_2: 玩家2落子

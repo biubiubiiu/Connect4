@@ -11,6 +11,8 @@ public class BtnGroup extends JPanel {
 
     BtnEvent handler;
 
+    private JButton[] btns;
+
     public void setHandler(BtnEvent handler) {
         this.handler = handler;
     }
@@ -19,15 +21,14 @@ public class BtnGroup extends JPanel {
         void buttonClick(int i);
     }
 
-    public BtnGroup(Board connected, PlayerPanel[] players, CountdownTimer timeDisplay) {
+    public BtnGroup(Board connected) {
         int nums = connected.getBoardColumns();
 
         //按键采用GridLayout布局
-        GridLayout gridLayoutForButtons = new GridLayout(1, nums);
-        gridLayoutForButtons.setHgap(Board.GAP);
+        GridLayout gridLayoutForButtons = new GridLayout(1, nums, Board.GAP, 0);
         this.setLayout(gridLayoutForButtons);
         this.setPreferredSize(new Dimension(Board.WIDTH, HEIGHT));
-        JButton[] btns = new JButton[nums];
+        btns = new JButton[nums];
         for (int i = 0; i < nums; i++) {
             btns[i] = new JButton("↓");
             btns[i].setSize(Board.SQUARE_SIZE, HEIGHT);
@@ -37,6 +38,20 @@ public class BtnGroup extends JPanel {
             btns[i].addActionListener(e -> {
                 handler.buttonClick(column);
             });
+        }
+    }
+
+    public void disableBtns() {
+        for (JButton button : btns) {
+            button.setText("");
+            button.setEnabled(false);
+        }
+    }
+
+    public void enableBtns() {
+        for (JButton button : btns) {
+            button.setText("↓");
+            button.setEnabled(true);
         }
     }
 }

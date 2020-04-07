@@ -87,7 +87,7 @@ public class ArchiveManager {
         }
 
         int status = object.getInteger(STATUS);
-        if (status != Core.Status.WIN.value() && status != Core.Status.FAIL.value() || status != Core.Status.CONTINUE.value()) {
+        if (status != Core.Status.WIN.value() && status != Core.Status.FAIL.value() && status != Core.Status.CONTINUE.value()) {
             throw new RuntimeException("存档信息不正确，无法读取");
         }
 
@@ -135,7 +135,7 @@ public class ArchiveManager {
             JSONObject obj = JSON.parseObject(File2String(path));
             loadJsonObject(obj, core);
         } catch (RuntimeException e) {
-            return new CommonReturnType(CommonReturnType.FAIL, "加载失败");
+            return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
         }
         return new CommonReturnType(CommonReturnType.SUCCESS, "加载成功");
     }
