@@ -11,6 +11,9 @@ import java.nio.charset.StandardCharsets;
 
 public class ArchiveManager {
 
+    public static final String BOARD = "board";
+    public static final String CURRENT_PLAYER = "current_player";
+
     private static String PATH = "./save.json";
 
     public static JSONObject getJsonObject(Core core) throws RuntimeException {
@@ -18,17 +21,17 @@ public class ArchiveManager {
 
         //board;
         String boardJsonString = JSON.toJSONString(core.getBoard());
-        object.put("board", boardJsonString);
+        object.put(BOARD, boardJsonString);
 
         // current player
-        object.put("current_player", core.getCurrPlayer().value());
+        object.put(CURRENT_PLAYER, core.getCurrPlayer().value());
 
         return object;
     }
 
     public static void loadJsonObject(JSONObject object, Core core) throws RuntimeException {
         int[][] savedBoard = new int[Core.ROW][Core.COL];
-        JSONArray array = object.getJSONArray("board");
+        JSONArray array = object.getJSONArray(BOARD);
         if (array.isEmpty()) {
             throw new RuntimeException("存档信息错误");
         }
@@ -37,15 +40,15 @@ public class ArchiveManager {
         }
         for (int i = 0; i < array.size(); i++) {
             JSONArray arr = array.getJSONArray(i);
+            if (arr.size() != Core.COL) {
+                throw new RuntimeException("存档格式错误");
+            }
             for (int j = 0; j < arr.size(); j++) {
-                if (array.size() != Core.COL) {
-                    throw new RuntimeException("存档格式错误");
-                }
                 savedBoard[i][j] = (int) arr.get(j);
             }
         }
 
-        int playerNum = object.getInteger("current_player");
+        int playerNum = object.getInteger(CURRENT_PLAYER);
 
         if (core != null) {
             core.setCurrPlayer(Core.Player.of(playerNum));
@@ -79,14 +82,14 @@ public class ArchiveManager {
         return builder.toString();
     }
 
-    public static boolean loadArchive() {
+    public static boolean loadArchive(Core core) {
         File file = new File(PATH);
         if (!file.exists()) {
             return false;
         }
         try {
             JSONObject obj = JSON.parseObject(loadFile(PATH));
-            loadJsonObject(obj, null);
+            loadJsonObject(obj, core);
         } catch (RuntimeException e) {
             return false;
         }

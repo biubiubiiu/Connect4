@@ -29,7 +29,6 @@ public class PlayerPanel extends JPanel {
         isTurn = new JLabel(img_2);
         isTurn.setVisible(false);
 
-
         this.setLayout(new BorderLayout());
         this.add(icon, BorderLayout.WEST);
         this.add(isTurn, BorderLayout.EAST);
@@ -42,5 +41,9 @@ public class PlayerPanel extends JPanel {
         } else {
             isTurn.setVisible(true);
         }
+    }
+
+    public void reset() {
+        isTurn.setVisible(false);
     }
 }

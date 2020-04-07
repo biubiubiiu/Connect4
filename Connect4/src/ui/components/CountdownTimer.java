@@ -56,6 +56,10 @@ public class CountdownTimer extends JPanel {
         timer.start();
     }
 
+    public void stopCountdown() {
+        timer.stop();
+    }
+
     public void setTimeoutCallback(timeoutCallback callback) {
         this.callback = callback;
     }

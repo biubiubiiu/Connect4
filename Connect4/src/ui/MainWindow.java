@@ -1,7 +1,9 @@
 package ui;
 
+import core.Core;
+import core.GameControl;
 import ui.components.*;
-import utils.MenuFactory;
+import utils.ArchiveManager;
 
 import javax.swing.*;
 
@@ -31,35 +33,32 @@ public class MainWindow {
         JPanel panelMain = new JPanel(springLayout);
         jf.setContentPane(panelMain);
 
-        // 添加菜单栏
-        // TODO
-        MenuBar menuBar = new MenuBar();
-        jf.setJMenuBar(menuBar);
-
         // 棋盘组件
         Board panelChessBoard = new Board();
+        panelChessBoard.setCore(new GameControl());
 
-        //玩家信息组件
+        // 玩家信息组件
         PlayerPanel[] players = new PlayerPanel[2];
         players[0] = new PlayerPanel("Player 1");
         players[1] = new PlayerPanel("Player 2");
+
         //玩家1先手
         players[0].switchStatus();
 
         //计时器组件
         CountdownTimer timeDisplay = new CountdownTimer();
         timeDisplay.setTimeoutCallback(() -> {
-            JOptionPane.showMessageDialog(null,
-                    panelChessBoard.getCurrPlayer() + " 超时了!");
-            panelChessBoard.switchPlayer();
-            players[0].switchStatus();
-            players[1].switchStatus();
-            timeDisplay.restartCountdown();
+                    JOptionPane.showMessageDialog(null,
+                            panelChessBoard.getCore().getCurrPlayer() + " 超时了!");
+                    panelChessBoard.getCore().switchPlayer();
+                    players[0].switchStatus();
+                    players[1].switchStatus();
+                    timeDisplay.restartCountdown();
                 }
         );
 
         // 按键组
-        JPanel panelButtons = new BtnGroup(panelChessBoard, players, timeDisplay);
+        BtnGroup panelButtons = new BtnGroup(panelChessBoard, players, timeDisplay);
 
         //将棋盘加到panelMain中并设置其格式
         panelMain.add(panelChessBoard);
@@ -119,6 +118,72 @@ public class MainWindow {
                         Spring.constant(20)
                 )
         );
+
+        // 添加菜单栏
+        MenuBar menuBar = new MenuBar();
+        menuBar.setHandler(new MenuBar.MenuBarEvent() {
+            @Override
+            public void newGame() {
+                panelChessBoard.getCore().reset();
+                panelChessBoard.repaint();
+                players[0].reset();
+                players[1].reset();
+                players[0].switchStatus();
+                timeDisplay.restartCountdown();
+            }
+
+            @Override
+            public void saveGame() {
+                ArchiveManager.saveArchive(panelChessBoard.getCore());
+                JOptionPane.showMessageDialog(null, "Successfully saved");
+            }
+
+            @Override
+            public void loadArchive() {
+                boolean result = ArchiveManager.loadArchive(panelChessBoard.getCore());
+                if (!result) {
+                    JOptionPane.showMessageDialog(null, "Failed");
+                }
+                timeDisplay.restartCountdown();
+                panelChessBoard.repaint();
+            }
+
+            @Override
+            public void exit() {
+                System.exit(0);
+            }
+        });
+
+        panelButtons.setHandler(i -> {
+            if (panelChessBoard.getCore().getGameStatus() != Core.Status.CONTINUE) {
+                return;
+            }
+            panelChessBoard.getCore().dropAt(i);
+            panelChessBoard.repaint();
+
+            switch (panelChessBoard.getCore().getGameStatus()) {
+                case WIN:
+                    timeDisplay.stopCountdown();
+                    JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
+                    break;
+                case FAIL:
+                    timeDisplay.stopCountdown();
+                    JOptionPane.showMessageDialog(null, "Draw!");
+                    break;
+                case CONTINUE:
+                    //交换玩家
+                    panelChessBoard.getCore().switchPlayer();
+                    players[0].switchStatus();
+                    players[1].switchStatus();
+                    timeDisplay.restartCountdown();
+                    break;
+                default:
+                    break;
+            }
+        });
+
+
+        jf.setJMenuBar(menuBar);
 
         jf.setVisible(true);
 

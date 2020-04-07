@@ -1,19 +1,19 @@
 package ui.components;
 
 import core.Core;
-import core.GameControl;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Board extends JPanel {
+
     public static final int SQUARE_SIZE = 80;
     public static final int GAP = 10;
 
     public static final int PADDING_HORIZONTAL = 8;
     public static final int PADDING_VERTICAL = 8;
-    public static final int WIDTH = Core.COL * SQUARE_SIZE + (Core.COL-1)*GAP + (PADDING_HORIZONTAL <<1);
-    public static final int HEIGHT = Core.ROW * SQUARE_SIZE + (Core.ROW-1)*GAP + (PADDING_VERTICAL << 1);
+    public static final int WIDTH = Core.COL * SQUARE_SIZE + (Core.COL - 1) * GAP + (PADDING_HORIZONTAL << 1);
+    public static final int HEIGHT = Core.ROW * SQUARE_SIZE + (Core.ROW - 1) * GAP + (PADDING_VERTICAL << 1);
 
     private static final Color BG_COLOR1 = new Color(121, 161, 109);
     private static final Color BG_COLOR2 = new Color(202, 196, 102);
@@ -26,6 +26,10 @@ public class Board extends JPanel {
      */
     private Core core;
 
+    public Core getCore() {
+        return core;
+    }
+
     public Board() {
         super();
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -33,8 +37,6 @@ public class Board extends JPanel {
 
         //TODO 右边框暂时不能显示
         this.setBorder(BorderFactory.createEtchedBorder());
-
-        this.setCore(new GameControl());
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Board extends JPanel {
                 } else {
                     g.setColor(BG_COLOR2);
                 }
-                g.fillRect((PADDING_HORIZONTAL + c * (SQUARE_SIZE + GAP)), ( PADDING_VERTICAL + r * (SQUARE_SIZE + GAP)), SQUARE_SIZE, SQUARE_SIZE);
+                g.fillRect((PADDING_HORIZONTAL + c * (SQUARE_SIZE + GAP)), (PADDING_VERTICAL + r * (SQUARE_SIZE + GAP)), SQUARE_SIZE, SQUARE_SIZE);
 
                 if (boardStatus[r][c] != Core.GridType.EMPTY.value()) {
                     g.setColor(boardStatus[r][c] == Core.GridType.PLAYER_1.value() ? CHESS_COLOR1 : CHESS_COLOR2);
@@ -61,23 +63,7 @@ public class Board extends JPanel {
         }
     }
 
-    public void dropAt(int column) {
-        this.core.dropAt(column);
-    }
-
-    public Core.Status getGameStatus() {
-        return this.core.getGameStatus();
-    }
-
-    public void switchPlayer() {
-        this.core.switchPlayer();
-    }
-
-    public Core.Player getCurrPlayer() {
-        return this.core.getCurrPlayer();
-    }
-
-    private void setCore(Core core) {
+    public void setCore(Core core) {
         this.core = core;
     }
 

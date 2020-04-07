@@ -2,30 +2,46 @@ package ui.components;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MenuBar extends JMenuBar {
 
-    Map<String, JMenuItem> map = new HashMap<>();
+    /* 在此添加菜单事件 */
+    public interface MenuBarEvent {
+        void newGame();
+
+        void saveGame();
+
+        void loadArchive();
+
+        void exit();
+    }
+
+    MenuBarEvent handler;
+
+    public void setHandler(MenuBarEvent handler) {
+        this.handler = handler;
+    }
 
     public MenuBar() {
         super();
-        JMenu start = new JMenu();
+        JMenu start = new JMenu("Start");
         addMenu(start, "New Game", e -> {
             int choice = JOptionPane.showOptionDialog(null,
-                    "You really want to quit?",
-                    "Quit",
+                    "Start a new game?",
+                    "Start",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null, null, null);
 
-            // interpret the user's choice
             if (choice == JOptionPane.YES_OPTION) {
-
+                handler.newGame();
             }
         });
         addMenu(start, "Save", e -> {
+            handler.saveGame();
+        });
+        addMenu(start, "Load", e -> {
+            handler.loadArchive();
         });
         addMenu(start, "Exit", e -> {
             int choice = JOptionPane.showOptionDialog(null,
@@ -35,9 +51,8 @@ public class MenuBar extends JMenuBar {
                     JOptionPane.QUESTION_MESSAGE,
                     null, null, null);
 
-            // interpret the user's choice
             if (choice == JOptionPane.YES_OPTION) {
-                System.exit(0);
+                handler.exit();
             }
         });
         this.add(start);
@@ -46,16 +61,16 @@ public class MenuBar extends JMenuBar {
     /**
      * 对于添加菜单方法的简单封装
      *
-     * @param parent   父菜单
+     * @param handler  父菜单
      * @param name     菜单项名
      * @param callback 回调函数
      */
-    public static void addMenu(JMenu parent, String name, ActionListener callback) {
-        if (parent == null) {
+    void addMenu(JMenu handler, String name, ActionListener callback) {
+        if (handler == null) {
             return;
         }
         JMenuItem item = new JMenuItem(name);
         item.addActionListener(callback);
-        parent.add(item);
+        handler.add(item);
     }
 }
