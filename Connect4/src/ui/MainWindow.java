@@ -1,14 +1,9 @@
 package ui;
 
-import core.Core;
-import ui.components.Board;
-import ui.components.BtnGroup;
-import ui.components.CountdownTimer;
-import ui.components.PlayerPanel;
+import ui.components.*;
 import utils.MenuFactory;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainWindow {
 
@@ -37,8 +32,8 @@ public class MainWindow {
         jf.setContentPane(panelMain);
 
         // 添加菜单栏
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.add(MenuFactory.createJMenu("Start", new String[]{"New Game", "Save", "Exit"}));
+        // TODO
+        MenuBar menuBar = new MenuBar();
         jf.setJMenuBar(menuBar);
 
         // 棋盘组件
@@ -53,6 +48,8 @@ public class MainWindow {
 
         //计时器组件
         CountdownTimer timeDisplay = new CountdownTimer();
+        timeDisplay.setTimeoutCallback(() -> JOptionPane.showMessageDialog(null, panelChessBoard.getCurrPlayer() + " 超时了!")
+        );
 
         // 按键组
         JPanel panelButtons = new BtnGroup(panelChessBoard, players, timeDisplay);
@@ -116,29 +113,9 @@ public class MainWindow {
                 )
         );
 
-        //定义timeOutCallback函数
-        timeDisplay.setTimeoutCallback(new CountdownTimer.timeoutCallback(){
-                @Override
-                public void run() {
-                    panelChessBoard.switchPlayer();
-                    players[0].switchStatus();
-                    players[1].switchStatus();
-                    timeDisplay.startCountdown();
-                }
-            }
-        );
-
-        //创建计时线程
-//        Runnable timeKeep = new Runnable() {
-//            @Override
-//            public void run() {
-//                timeDisplay.startCountdown();
-//            }
-//        };
-//        timeKeep.run();
-
         jf.setVisible(true);
+
         //开始计时
-        timeDisplay.startCountdown();
+        timeDisplay.restartCountdown();
     }
 }

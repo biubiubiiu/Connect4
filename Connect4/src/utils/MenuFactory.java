@@ -5,10 +5,13 @@ import java.awt.event.ActionListener;
 
 public class MenuFactory {
 
-    public static JMenu addMenu(JMenu parent, String name, ActionListener callback) {
-        if(parent == null) { return null; }
+
+    public static void addMenu(JMenu parent, String name, ActionListener callback) {
+        if (parent == null) {
+            return;
+        }
         JMenuItem item = new JMenuItem(name);
         item.addActionListener(callback);
-        return parent;
+        parent.add(item);
     }
 }

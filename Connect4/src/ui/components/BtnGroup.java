@@ -8,10 +8,12 @@ public class BtnGroup extends JPanel {
     private static final int HEIGHT = 30;
 
     private Board connectedBoard;
+    private CountdownTimer connectedTimer;
     private PlayerPanel[] players;
 
     public BtnGroup(Board connected, PlayerPanel[] players, CountdownTimer timeDisplay) {
         this.connectedBoard = connected;
+        this.connectedTimer = timeDisplay;
         this.players = players;
         int nums = connected.getBoardColumns();
 
@@ -45,7 +47,7 @@ public class BtnGroup extends JPanel {
                         connectedBoard.switchPlayer();
                         players[0].switchStatus();
                         players[1].switchStatus();
-                        timeDisplay.startCountdown();
+                        timeDisplay.restartCountdown();
                         break;
                     default:
                         break;

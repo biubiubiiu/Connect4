@@ -11,12 +11,12 @@ public class CountdownTimer extends JPanel {
         public void run();
     }
 
-    private static final int COUNTDOWN = 15000;  // 15000ms
+    // 计时时长：15000ms
+    private static final int COUNTDOWN = 15000;
     private static final int ONE_SEC = 1000;
     private int current;
 
     private final JLabel display;
-    //private final JButton start;
     private final Timer timer;
 
     private timeoutCallback callback;
@@ -38,14 +38,6 @@ public class CountdownTimer extends JPanel {
         });
         timer.setRepeats(true);
 
-//        start.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                startCountdown();
-//            }
-//        });
-//
-//        this.add(start);
         this.add(display);
     }
 
@@ -53,16 +45,12 @@ public class CountdownTimer extends JPanel {
         return (time / 1000 + "s");
     }
 
-    public void startCountdown() {
-        current = COUNTDOWN; // 重新装入倒计时
+    public void restartCountdown() {
+        // 重新装入倒计时
+        current = COUNTDOWN;
         display.setText(timeFormat(current));
         timer.start();
     }
-
-//    private void stopCountdown() {
-//        display.setText(timeFormat(current));
-//        timer.stop();
-//    }
 
     public void setTimeoutCallback(timeoutCallback callback) {
         this.callback = callback;
