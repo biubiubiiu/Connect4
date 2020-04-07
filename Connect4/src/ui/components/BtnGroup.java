@@ -8,9 +8,11 @@ public class BtnGroup extends JPanel {
     private static final int HEIGHT = 30;
 
     private Board connectedBoard;
+    private PlayerPanel[] players;
 
-    public BtnGroup(Board connected) {
+    public BtnGroup(Board connected, PlayerPanel[] players) {
         this.connectedBoard = connected;
+        this.players = players;
         int nums = connected.getBoardColumns();
 
         //按键采用GridLayout布局
@@ -41,6 +43,8 @@ public class BtnGroup extends JPanel {
                     case CONTINUE:
                         //交换玩家
                         connectedBoard.switchPlayer();
+                        players[0].switchStatus();
+                        players[1].switchStatus();
                         break;
                     default:
                         break;

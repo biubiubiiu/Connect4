@@ -11,7 +11,7 @@ public class CountdownTimer extends JPanel {
         public void run();
     }
 
-    private static final int COUNTDOWN = 15000; // 15000ms
+    private static final int COUNTDOWN = 15000;  // 15000ms
     private static final int ONE_SEC = 1000;
     private int current;
 
@@ -21,7 +21,7 @@ public class CountdownTimer extends JPanel {
 
     private timeoutCallback callback;
 
-    CountdownTimer() {
+    public CountdownTimer() {
         super();
         start = new JButton("Start");
         display = new JLabel(timeFormat(COUNTDOWN));
@@ -68,11 +68,4 @@ public class CountdownTimer extends JPanel {
         this.callback = callback;
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("test");
-        frame.setLayout(new FlowLayout());
-        frame.setSize(220, 120);
-        frame.add(new CountdownTimer());
-        frame.setVisible(true);
-    }
 }

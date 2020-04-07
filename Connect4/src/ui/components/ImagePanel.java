@@ -11,7 +11,7 @@ public class ImagePanel extends JPanel{
 
     private BufferedImage image;
 
-    public ImagePanel(int parentWidth, String path) {
+    public ImagePanel(String path) {
         try {
             image = ImageIO.read(new File(path));
         } catch (IOException ex) {
