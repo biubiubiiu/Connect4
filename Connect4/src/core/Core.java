@@ -46,6 +46,8 @@ public interface Core {
         Player next() {
             return this == PLAYER_1 ? PLAYER_2 : PLAYER_1;
         }
+
+        public static Player of(int value) { return value == PLAYER_1.value ? PLAYER_1 : PLAYER_2; }
     }
 
     /**
@@ -101,4 +103,10 @@ public interface Core {
      * 交换玩家
      */
     void switchPlayer();
+
+    void setBoard(int[][] board);
+
+    void setCurrPlayer(Player currPlayer);
+
+    void setGameState(Status gameState);
 }

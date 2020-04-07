@@ -5,7 +5,6 @@ import core.GameControl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.CropImageFilter;
 
 public class Board extends JPanel {
     public static final int SQUARE_SIZE = 80;
@@ -18,11 +17,13 @@ public class Board extends JPanel {
 
     private static final Color BG_COLOR1 = new Color(121, 161, 109);
     private static final Color BG_COLOR2 = new Color(202, 196, 102);
-    //TODO 下面几个颜色有点丑，后期再换
+
     private static final Color CHESS_COLOR1 = Color.BLACK;
     private static final Color CHESS_COLOR2 = Color.WHITE;
 
-    // 与核心逻辑的接口
+    /**
+     * 与核心逻辑的接口
+     */
     private Core core;
 
     public Board() {

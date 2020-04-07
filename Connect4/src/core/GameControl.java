@@ -17,7 +17,7 @@ public class GameControl implements Core {
 
     @Override
     public void dropAt(int column) {
-        if (Judge.judgeBorder(column, board[0].length) == false) {
+        if (!Judge.judgeBorder(column, board[0].length)) {
             return;
         }
         int top = -1;
@@ -52,18 +52,6 @@ public class GameControl implements Core {
         return this.currPlayer;
     }
 
-    public void setBoard(int[][] board) {
-        this.board = board;
-    }
-
-    public void setCurrPlayer(Player currPlayer) {
-        this.currPlayer = currPlayer;
-    }
-
-    public void setGameState(Status gameState) {
-        this.gameState = gameState;
-    }
-
     @Override
     public void reset() {
         resetBoard();
@@ -86,11 +74,26 @@ public class GameControl implements Core {
     }
 
     @Override
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
+
+    @Override
+    public void setCurrPlayer(Player currPlayer) {
+        this.currPlayer = currPlayer;
+    }
+
+    @Override
+    public void setGameState(Status gameState) {
+        this.gameState = gameState;
+    }
+
+    @Override
     public void switchPlayer() {
         this.currPlayer = currPlayer.next();
     }
 
-    private static void printBoard(int[][] board) {
+    public static void printBoard(int[][] board) {
         System.out.println("[");
         for (int i = 0; i < board.length; i++) {
             System.out.print("[");

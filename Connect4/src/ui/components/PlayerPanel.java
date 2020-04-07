@@ -11,7 +11,7 @@ public class PlayerPanel extends JPanel {
     private JLabel icon;
     private JLabel isTurn;
 
-    public PlayerPanel(String name){
+    public PlayerPanel(String name) {
         super();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
@@ -21,11 +21,11 @@ public class PlayerPanel extends JPanel {
         setBorder(border1);
 
         ImageIcon img_1 = new ImageIcon(".\\res\\player.png");
-        img_1.setImage(img_1.getImage().getScaledInstance(50, 50,Image.SCALE_DEFAULT ));
+        img_1.setImage(img_1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         icon = new JLabel(img_1);
 
         ImageIcon img_2 = new ImageIcon(".\\res\\chess.png");
-        img_2.setImage(img_2.getImage().getScaledInstance(25, 25,Image.SCALE_DEFAULT ));
+        img_2.setImage(img_2.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         isTurn = new JLabel(img_2);
         isTurn.setVisible(false);
 
@@ -36,10 +36,11 @@ public class PlayerPanel extends JPanel {
     }
 
 
-    public void switchStatus(){
-        if (isTurn.isVisible())
+    public void switchStatus() {
+        if (isTurn.isVisible()) {
             isTurn.setVisible(false);
-        else
+        } else {
             isTurn.setVisible(true);
+        }
     }
 }
