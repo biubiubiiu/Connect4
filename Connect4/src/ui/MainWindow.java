@@ -1,5 +1,6 @@
 package ui;
 
+import common.CommonReturnType;
 import core.Core;
 import core.GameControl;
 import ui.components.*;
@@ -134,18 +135,18 @@ public class MainWindow {
 
             @Override
             public void saveGame() {
-                ArchiveManager.saveArchive(panelChessBoard.getCore());
-                JOptionPane.showMessageDialog(null, "Successfully saved");
+                CommonReturnType result = ArchiveManager.saveArchive(panelChessBoard.getCore());
+                JOptionPane.showMessageDialog(null, result.getMessage());
             }
 
             @Override
             public void loadArchive() {
-                boolean result = ArchiveManager.loadArchive(panelChessBoard.getCore());
-                if (!result) {
-                    JOptionPane.showMessageDialog(null, "Failed");
+                CommonReturnType result = ArchiveManager.loadArchive(panelChessBoard.getCore());
+                JOptionPane.showMessageDialog(null, result.getMessage());
+                if (result.getStatus() == CommonReturnType.SUCCESS) {
+                    timeDisplay.restartCountdown();
+                    panelChessBoard.repaint();
                 }
-                timeDisplay.restartCountdown();
-                panelChessBoard.repaint();
             }
 
             @Override

@@ -47,7 +47,14 @@ public interface Core {
             return this == PLAYER_1 ? PLAYER_2 : PLAYER_1;
         }
 
-        public static Player of(int value) { return value == PLAYER_1.value ? PLAYER_1 : PLAYER_2; }
+        public static Player of(int value) {
+            if (value == PLAYER_1.value) {
+                return PLAYER_1;
+            } else if (value == PLAYER_2.value) {
+                return PLAYER_2;
+            }
+            return null;
+        }
     }
 
     /**
@@ -63,7 +70,28 @@ public interface Core {
          * FAIL: 和局
          * CONTINUE: 未决胜负
          */
-        WIN, FAIL, CONTINUE
+        WIN(0), FAIL(1), CONTINUE(2);
+
+        private int value;
+
+        Status(int val) {
+            this.value = val;
+        }
+
+        public int value() {
+            return this.value;
+        }
+
+        public static Status of(int value) {
+            if (value == WIN.value) {
+                return WIN;
+            } else if (value == FAIL.value) {
+                return FAIL;
+            } else if (value == CONTINUE.value) {
+                return CONTINUE;
+            }
+            return null;
+        }
     }
 
     /**
@@ -104,9 +132,24 @@ public interface Core {
      */
     void switchPlayer();
 
+    /**
+     * 设置棋盘
+     *
+     * @param board 棋盘
+     */
     void setBoard(int[][] board);
 
+    /**
+     * 设置当前玩家
+     *
+     * @param currPlayer 当前玩家
+     */
     void setCurrPlayer(Player currPlayer);
 
+    /**
+     * 设置游戏状态
+     *
+     * @param gameState 游戏状态
+     */
     void setGameState(Status gameState);
 }
