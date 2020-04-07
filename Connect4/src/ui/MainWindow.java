@@ -52,10 +52,10 @@ public class MainWindow {
         players[0].switchStatus();
 
         //计时器组件
-        JPanel timeDisplay = new CountdownTimer();
+        CountdownTimer timeDisplay = new CountdownTimer();
 
         // 按键组
-        JPanel panelButtons = new BtnGroup(panelChessBoard, players);
+        JPanel panelButtons = new BtnGroup(panelChessBoard, players, timeDisplay);
 
         //将棋盘加到panelMain中并设置其格式
         panelMain.add(panelChessBoard);
@@ -116,6 +116,29 @@ public class MainWindow {
                 )
         );
 
+        //定义timeOutCallback函数
+        timeDisplay.setTimeoutCallback(new CountdownTimer.timeoutCallback(){
+                @Override
+                public void run() {
+                    panelChessBoard.switchPlayer();
+                    players[0].switchStatus();
+                    players[1].switchStatus();
+                    timeDisplay.startCountdown();
+                }
+            }
+        );
+
+        //创建计时线程
+//        Runnable timeKeep = new Runnable() {
+//            @Override
+//            public void run() {
+//                timeDisplay.startCountdown();
+//            }
+//        };
+//        timeKeep.run();
+
         jf.setVisible(true);
+        //开始计时
+        timeDisplay.startCountdown();
     }
 }
