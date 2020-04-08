@@ -4,8 +4,6 @@ package core;
  * 将各种判定函数独立出来
  * 写在一个单独的类里
  *
- * @author Fimon, Raymond
- * <p>
  * 核心方法：
  * 1. {@link #judge(int[][], int, int)} 判定当前游戏状态
  * 2. {@link #judgeSuccess(int[][], int, int)} 判断是否有一方连成四子
@@ -17,7 +15,6 @@ public class Judge {
 
     /**
      * 判断棋盘是否全部填满
-     *
      * @param board 棋盘状态
      * @return false：为填满；true：填满
      */
@@ -61,7 +58,6 @@ public class Judge {
      */
     private static int[][] dr = {{0, 0}, {-1, 1}, {-1, 1}, {1, -1}};
     private static int[][] dc = {{-1, 1}, {0, 0}, {-1, 1}, {-1, 1}};
-    private static final int N_DIRECTION = dr.length;
 
     /**
      * 判断是否连成四子
@@ -73,14 +69,11 @@ public class Judge {
      * @return 当前落子后，是否连成四子
      */
     private static boolean judgeSuccess(int[][] board, int r, int c) {
-        if (board.length == 0) {
-            return false;
-        }
-        if (board.length < N_DIRECTION && board[0].length < N_DIRECTION) {
+        if (board.length == 0 || board.length < 4 && board[0].length < 4) {
             return false;
         }
 
-        for (int dirc = 0; dirc < N_DIRECTION; dirc++) {
+        for (int dirc = 0; dirc < dr.length; dirc++) {
             if (count(board, dirc, r, c) >= 4) {
                 return true;
             }

@@ -96,7 +96,7 @@ public class ArchiveManager {
         core.setBoard(savedBoard);
     }
 
-    private static String file2String(String path) throws RuntimeException {
+    private static String File2String(String path) throws RuntimeException {
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
         try {
@@ -132,7 +132,7 @@ public class ArchiveManager {
             return new CommonReturnType(CommonReturnType.FAIL, "没有找到存档文件");
         }
         try {
-            JSONObject obj = JSON.parseObject(file2String(path));
+            JSONObject obj = JSON.parseObject(File2String(path));
             loadJsonObject(obj, core);
         } catch (RuntimeException e) {
             return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
@@ -153,13 +153,22 @@ public class ArchiveManager {
                 return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
             }
         }
+        FileOutputStream fileOutputStream = null;
         try {
             JSONObject obj = getJsonObject(core);
             byte[] bytes = obj.toString().getBytes(StandardCharsets.UTF_8);
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(bytes);
         } catch (RuntimeException | IOException e) {
             return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    return new CommonReturnType(CommonReturnType.FAIL, e.getMessage());
+                }
+            }
         }
         return new CommonReturnType(CommonReturnType.SUCCESS, "Successfully saved");
     }

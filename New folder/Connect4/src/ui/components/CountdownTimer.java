@@ -5,21 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * @author Raymond
- */
 public class CountdownTimer extends JPanel {
 
-    public interface TimeoutCallback {
-        /**
-         * 计时器超时的回调函数
-         */
+    public interface timeoutCallback {
         public void run();
     }
 
-    /**
-     * 计时时长：15000ms
-     */
+    // 计时时长：15000ms
     private static final int COUNTDOWN = 15000;
     private static final int ONE_SEC = 1000;
     private int current;
@@ -27,7 +19,7 @@ public class CountdownTimer extends JPanel {
     private final JLabel display;
     private final Timer timer;
 
-    private TimeoutCallback callback;
+    private timeoutCallback callback;
 
     public CountdownTimer() {
         super();
@@ -68,14 +60,11 @@ public class CountdownTimer extends JPanel {
         timer.stop();
     }
 
-    public void setTimeoutCallback(TimeoutCallback callback) {
+    public void setTimeoutCallback(timeoutCallback callback) {
         this.callback = callback;
     }
 
-    /**
-     * 绘制背景图片
-     * @param g ignored
-     */
+    //绘制背景图片
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

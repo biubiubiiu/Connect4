@@ -5,9 +5,6 @@ import core.Core;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * @author Fimon
- */
 public class BtnGroup extends JPanel {
 
     private static final int HEIGHT = 30;
@@ -21,10 +18,6 @@ public class BtnGroup extends JPanel {
     }
 
     public interface BtnEvent {
-        /**
-         * 按键点击事件
-         * @param i 按钮序号
-         */
         void buttonClick(int i);
     }
 

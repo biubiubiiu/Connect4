@@ -1,8 +1,5 @@
 package core;
 
-/**
- * @author Raymond
- */
 public interface Core {
     enum GridType {
         /**

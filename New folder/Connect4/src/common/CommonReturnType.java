@@ -1,8 +1,5 @@
 package common;
 
-/**
- * @author Raymond
- */
 public class CommonReturnType {
 
     public static final int SUCCESS = 200;

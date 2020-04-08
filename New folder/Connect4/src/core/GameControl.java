@@ -1,8 +1,5 @@
 package core;
 
-/**
- * @author Lianghao, Fimon, Raymond
- */
 public class GameControl implements Core {
     private int[][] board;
     private Player currPlayer;

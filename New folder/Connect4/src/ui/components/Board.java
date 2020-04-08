@@ -5,9 +5,6 @@ import core.Core;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * @author Fimon, Raymond
- */
 public class Board extends JPanel {
 
     public static final int SQUARE_SIZE = 80;

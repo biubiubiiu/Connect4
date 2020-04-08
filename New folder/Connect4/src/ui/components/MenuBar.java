@@ -3,14 +3,9 @@ package ui.components;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-/**
- * @author Raymond
- */
 public class MenuBar extends JMenuBar {
 
-    /**
-     * 在此添加菜单事件
-     */
+    /* 在此添加菜单事件 */
     public interface MenuBarEvent {
         /**
          * 新游戏
