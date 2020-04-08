@@ -8,9 +8,6 @@ import utils.ArchiveManager;
 
 import javax.swing.*;
 
-/**
- * @author Fimon
- */
 public class MainWindow extends JFrame {
 
     /**
