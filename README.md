@@ -2,7 +2,7 @@
 
 2020年春 软件质量与测试实践作业
 
-小组成员：[陆逸航](https://github.com/Fimon12138)，[黄俊健](https://github.com/biubiubiiu)，梁好
+小组成员：[陆逸航](https://github.com/Fimon12138)，[黄俊健](https://github.com/biubiubiiu)，梁好，李梓华，钟椿生
 
 ## 简介
 
