@@ -31,6 +31,7 @@ public class MainWindow extends JFrame {
     private CountdownTimer timeDisplay;
     private BtnGroup panelButtons;
     private MenuBar menuBar;
+    private Settings settings;
 
     public MainWindow() {
         super("Connect4");
@@ -75,6 +76,10 @@ public class MainWindow extends JFrame {
         // 添加菜单栏
         menuBar = new MenuBar();
         this.setJMenuBar(menuBar);
+
+        // 设置页
+        settings = new Settings();
+        settings.setVisible(false);
     }
 
     /**
@@ -197,13 +202,23 @@ public class MainWindow extends JFrame {
             public void exit() {
                 System.exit(0);
             }
+
+            @Override
+            public void viewSettings() {
+                settings.setVisible(true);
+            }
         });
 
         panelButtons.setHandler(i -> {
+            if (panelChessBoard.getCore().getCurrPlayer().isAI()) {
+                return;
+            }
             if (panelChessBoard.getCore().getGameStatus() != Core.Status.CONTINUE) {
                 return;
             }
             panelChessBoard.getCore().dropAt(i);
+            panelChessBoard.repaint();
+            panelChessBoard.getCore().checkStatus();
             panelChessBoard.repaint();
 
             switch (panelChessBoard.getCore().getGameStatus()) {
@@ -219,7 +234,6 @@ public class MainWindow extends JFrame {
                     break;
                 case CONTINUE:
                     //交换玩家
-                    panelChessBoard.getCore().switchPlayer();
                     players[0].switchStatus();
                     players[1].switchStatus();
                     timeDisplay.restartCountdown();
@@ -228,11 +242,21 @@ public class MainWindow extends JFrame {
                     break;
             }
         });
-    }
 
+        settings.setHandler(new Settings.SettingsEvent() {
+            @Override
+            public void changeGameMode(int mode) {
+                if (mode == Core.GAME_MODE.HUMAN_VS_AI.value) {
+                    Core.Player.PLAYER_2.setAIPlayer();
+                } else {
+                    Core.Player.PLAYER_2.setHumanPlayer();
+                }
+            }
 
-    public static void main(String[] args) {
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.setVisible(true);
+            @Override
+            public void changeDepth(int depth) {
+                panelChessBoard.getCore().setSearchDepth(depth);
+            }
+        });
     }
 }

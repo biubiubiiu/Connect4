@@ -31,6 +31,11 @@ public class MenuBar extends JMenuBar {
          * 退游
          */
         void exit();
+
+        /**
+         * 打开设置页
+         */
+        void viewSettings();
     }
 
     MenuBarEvent handler;
@@ -56,6 +61,7 @@ public class MenuBar extends JMenuBar {
         });
         addMenu(start, "Save", e -> handler.saveGame());
         addMenu(start, "Load", e -> handler.loadArchive());
+        addMenu(start, "Settings", e -> handler.viewSettings());
         addMenu(start, "Exit", e -> {
             int choice = JOptionPane.showOptionDialog(null,
                     "You really want to quit?",
@@ -71,7 +77,7 @@ public class MenuBar extends JMenuBar {
         this.add(start);
 
         JMenu help = new JMenu("Help");
-        addMenu(help, "How to play", e-> JOptionPane.showMessageDialog(null,
+        addMenu(help, "How to play", e -> JOptionPane.showMessageDialog(null,
                 "Click on the buttons or press 1-7 on your keyboard to insert a new checker."
                         + "\nTo win you must place 4 checkers in an row, horizontally, vertically or diagonally.",
                 "How to Play", JOptionPane.INFORMATION_MESSAGE));

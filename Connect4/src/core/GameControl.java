@@ -7,6 +7,7 @@ public class GameControl implements Core {
     private int[][] board;
     private Player currPlayer;
     private Status gameState;
+    private MiniMaxAI ai;
 
     public GameControl() {
         this.board = new int[ROW][COL];
@@ -15,8 +16,8 @@ public class GameControl implements Core {
         this.currPlayer = Player.PLAYER_1;
 
         this.gameState = Status.CONTINUE;
+        this.ai = new MiniMaxAI();
     }
-
 
     @Override
     public void dropAt(int column) {
@@ -32,9 +33,6 @@ public class GameControl implements Core {
             return;
         }
         board[top][column] = GridType.of(currPlayer);
-
-        // 打印棋盘
-        printBoard(this.board);
 
         // 每次落子后判断一次游戏状态
         // (top, column) 为本次落子位置
@@ -94,19 +92,32 @@ public class GameControl implements Core {
     }
 
     @Override
-    public void switchPlayer() {
-        this.currPlayer = currPlayer.next();
+    public void setSearchDepth(int depth) {
+        this.ai.setMaxDepth(depth);
+        this.ai.setAiPlayer(Player.PLAYER_2);
+        System.out.println("setDepth: " + depth);
     }
 
-    public static void printBoard(int[][] board) {
-        System.out.println("[");
-        for (int[] row : board) {
-            System.out.print("[");
-            for (int j = 0; j < board[0].length; j++) {
-                System.out.print(row[j] + ",");
+    @Override
+    public void aiMove() {
+        System.out.println("ai moving");
+        int col = ai.generateMove(board);
+        dropAt(col);
+        switchPlayer();
+    }
+
+    @Override
+    public void checkStatus() {
+        if (gameState == Status.CONTINUE) {
+            switchPlayer();
+            if (this.currPlayer.isAI()) {
+                aiMove();
             }
-            System.out.print("]\n");
         }
-        System.out.println("]");
+    }
+
+    @Override
+    public void switchPlayer() {
+        this.currPlayer = currPlayer.next();
     }
 }

@@ -10,41 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4523f45b-d679-432a-8133-66c3475f0de2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save.json" beforeDir="false" afterPath="$PROJECT_DIR$/save.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/save.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Core.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/GameControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Judge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Judge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/components/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/components/BtnGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/BtnGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/components/CountdownTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/CountdownTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/components/ImagePanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/components/PlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/PlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ArchiveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ArchiveManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/core/GameControlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/core/GameControlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/core/JudgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/core/JudgeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/res/BLACK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/res/Board.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/res/chess.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/res/clock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/res/player.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/common/CommonReturnType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/core/Core.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/core/GameControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/core/Judge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/MainWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/components/Board.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/components/BtnGroup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/components/CountdownTimer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/components/ImagePanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/components/MenuBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/ui/components/PlayerPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/src/utils/ArchiveManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/test/core/GameControlTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/test/core/JudgeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../New folder/Connect4/test/utils/ArchiveManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/components/MenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/MenuBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/testSuite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/utils/ArchiveManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils/ArchiveManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +26,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="225" />
+    <option name="myElementSize" value="230" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -80,8 +54,10 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/core" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fastjson-1.2.68.jar!/" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -90,12 +66,23 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="utils" />
       <recent name="core" />
     </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="common.Constants" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\桌面\新建文件夹\Connect4\Connect4\res" />
+      <recent name="D:\File\Connect4\Connect4" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ui" />
+      <recent name="core" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\桌面\新建文件夹\Connect4\Connect4\res" />
@@ -103,15 +90,15 @@
       <recent name="D:\File\Connect4\Connect4\src\core" />
       <recent name="D:\File\Connect4\Connect4\res" />
     </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\桌面\新建文件夹\Connect4\Connect4\res" />
-      <recent name="D:\File\Connect4\Connect4" />
-    </key>
   </component>
-  <component name="RunManager" selected="Application.MainWindow">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Connect4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.MainWindow" />
       <module name="Connect4" />
@@ -125,7 +112,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArchiveManagerTest.loadArchiveTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArchiveManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
       <extension name="coverage">
         <pattern>
@@ -135,55 +122,42 @@
       </extension>
       <option name="PACKAGE_NAME" value="utils" />
       <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
-      <option name="METHOD_NAME" value="loadArchiveTest2" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArchiveManagerTest.loadJsonObjectTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="utils.*" />
+          <option name="PATTERN" value="core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="utils" />
-      <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
-      <option name="METHOD_NAME" value="loadJsonObjectTest1" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="core" />
+      <option name="MAIN_CLASS_NAME" value="core.GameControlTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArchiveManagerTest.saveArchiveTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="testSuite" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Connect4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="utils" />
-      <option name="MAIN_CLASS_NAME" value="utils.ArchiveManagerTest" />
-      <option name="METHOD_NAME" value="saveArchiveTest2" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="testSuite" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="Connect4.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Connect4_jar/Connect4.jar" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainWindow" />
-        <item itemvalue="JAR Application.Connect4.jar" />
-        <item itemvalue="JUnit.ArchiveManagerTest.saveArchiveTest2" />
-        <item itemvalue="JUnit.ArchiveManagerTest.loadArchiveTest2" />
-        <item itemvalue="JUnit.ArchiveManagerTest.loadJsonObjectTest1" />
+        <item itemvalue="JUnit.testSuite" />
+        <item itemvalue="JUnit.ArchiveManagerTest" />
+        <item itemvalue="JUnit.GameControlTest" />
       </list>
     </recent_temporary>
   </component>
@@ -217,34 +191,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1585820646974" />
-    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser" timestamp="1586278860406">
+    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser" timestamp="1586540750096">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586278860406" />
+    <state x="842" y="104" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586540750096" />
     <state x="499" y="218" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1586271643311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="218" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1586271643311" />
-    <state x="479" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586332199812">
+    <state x="479" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586535229598">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="479" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1586332199812" />
+    <state x="479" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1586535229598" />
     <state x="579" y="123" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1586257804288">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="579" y="123" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1536.824@0.0.1536.824" timestamp="1586257804288" />
-    <state x="465" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1586241375620">
+    <state x="542" y="334" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1586535342396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1586241375620" />
-    <state x="571" y="304" width="393" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586271670357">
+    <state x="542" y="334" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1586535342396" />
+    <state x="571" y="304" width="393" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586544807366">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="571" y="304" width="393" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1586271670357" />
-    <state x="487" y="128" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1585817381502">
+    <state x="571" y="304" width="393" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1586544807366" />
+    <state x="619" y="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1586536928491">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="487" y="128" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1536.824@0.0.1536.824" timestamp="1585817381502" />
+    <state x="619" y="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1586536928491" />
+    <state x="965" y="159" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1586535351069">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="965" y="159" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1536.824@0.0.1536.824" timestamp="1586535351069" />
     <state x="520" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586508220857">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -261,42 +239,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586270713026" />
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1586508537044">
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586508537044" />
-    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1586508537044">
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586508537044" />
-    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1586508537044">
+    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586508537044" />
-    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1586508537044">
+    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586508537044" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1586287201333">
+    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586287201333" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1586287201333">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1586287201333" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1586287201333">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1586287201333" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1586287201333">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1586544871687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1586287201333" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1586544871687" />
     <state x="139" y="0" key="SettingsEditor" timestamp="1586507425913">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="139" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586507425913" />
+    <state x="583" y="218" key="chooseDestDirectoryDialog" timestamp="1586540714730">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="583" y="218" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1586540714730" />
     <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1586270795004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -313,10 +295,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586280143700" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586508379031">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586534912619">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1586508379031" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1586534912619" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -329,6 +311,7 @@
     <SUITE FILE_PATH="coverage/Connect4$GameControlTest.ic" NAME="GameControlTest Coverage Results" MODIFIED="1586116411393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>core.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Connect4$testSuite.ic" NAME="testSuite Coverage Results" MODIFIED="1586510504137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Connect4$GameControlTest_dropAtTest1.ic" NAME="GameControlTest.dropAtTest1 Coverage Results" MODIFIED="1586116360710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>core.*</FILTER>
     </SUITE>

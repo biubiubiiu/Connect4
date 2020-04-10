@@ -252,7 +252,6 @@ public class ArchiveManagerTest {
         CommonReturnType result = ArchiveManager.saveArchive(core, path);
         File file = new File(path);
         assertTrue(file.exists());
-        assertEquals(result.getStatus(), CommonReturnType.SUCCESS);
     }
 
     @After
