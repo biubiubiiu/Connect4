@@ -14,7 +14,7 @@ public interface Core {
          */
         EMPTY(0), PLAYER_1(1), PLAYER_2(2);
 
-        private int value;
+        private final int value;
 
         GridType(int val) {
             this.value = val;
@@ -37,7 +37,7 @@ public interface Core {
          */
         PLAYER_1(1), PLAYER_2(2);
 
-        private int value;
+        private final int value;
 
         Player(int val) {
             this.value = val;
@@ -76,7 +76,7 @@ public interface Core {
          */
         WIN(0), FAIL(1), CONTINUE(2);
 
-        private int value;
+        private final int value;
 
         Status(int val) {
             this.value = val;

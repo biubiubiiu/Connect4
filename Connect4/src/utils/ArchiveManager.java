@@ -20,7 +20,7 @@ public class ArchiveManager {
     public static final String CURRENT_PLAYER = "current_player";
     public static final String STATUS = "status";
 
-    private static String PATH = "./save.json";
+    private static final String PATH = "./save.json";
 
     public static JSONObject getJsonObject(Core core) throws RuntimeException {
         JSONObject object = new JSONObject();
@@ -97,12 +97,11 @@ public class ArchiveManager {
     }
 
     private static String file2String(String path) throws RuntimeException {
-        BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
         try {
             FileInputStream fileInputStream = new FileInputStream(path);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-            reader = new BufferedReader(inputStreamReader);
+            BufferedReader reader = new BufferedReader(inputStreamReader);
             String line;
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
@@ -110,14 +109,6 @@ public class ArchiveManager {
             reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e.getMessage());
-                }
-            }
         }
         return builder.toString();
     }
