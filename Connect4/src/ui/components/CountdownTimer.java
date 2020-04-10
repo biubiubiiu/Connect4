@@ -14,7 +14,7 @@ public class CountdownTimer extends JPanel {
         /**
          * 计时器超时的回调函数
          */
-        public void run();
+        void run();
     }
 
     /**
@@ -28,6 +28,7 @@ public class CountdownTimer extends JPanel {
     private final Timer timer;
 
     private TimeoutCallback callback;
+    private final ImageIcon img;
 
     public CountdownTimer() {
         super();
@@ -51,6 +52,9 @@ public class CountdownTimer extends JPanel {
         display.setHorizontalAlignment(SwingConstants.CENTER);
         this.setLayout(new BorderLayout());
         this.add(display);
+
+        java.net.URL url = this.getClass().getResource("/clock.png");
+        this.img = new ImageIcon(url);
     }
 
     private String timeFormat(int time) {
@@ -74,12 +78,12 @@ public class CountdownTimer extends JPanel {
 
     /**
      * 绘制背景图片
+     *
      * @param g ignored
      */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        ImageIcon img = new ImageIcon(".\\res\\clock.png");
         g.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
     }
 }

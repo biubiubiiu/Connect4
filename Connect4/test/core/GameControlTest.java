@@ -10,12 +10,12 @@ public class GameControlTest {
     private GameControl testObj;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.testObj = new GameControl();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         this.testObj = null;
     }
 

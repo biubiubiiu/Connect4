@@ -69,8 +69,4 @@ public class Board extends JPanel {
     public void setCore(Core core) {
         this.core = core;
     }
-
-    public int getBoardColumns() {
-        return Core.COL;
-    }
 }

@@ -1,7 +1,5 @@
 package ui.components;
 
-import core.Core;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +12,7 @@ public class BtnGroup extends JPanel {
 
     BtnEvent handler;
 
-    private JButton[] btns;
+    private final JButton[] btns;
 
     public void setHandler(BtnEvent handler) {
         this.handler = handler;
@@ -28,8 +26,7 @@ public class BtnGroup extends JPanel {
         void buttonClick(int i);
     }
 
-    public BtnGroup(Board connected) {
-        int nums = connected.getBoardColumns();
+    public BtnGroup(int nums) {
 
         //按键采用GridLayout布局
         GridLayout gridLayoutForButtons = new GridLayout(1, nums, Board.GAP, 0);
@@ -42,9 +39,7 @@ public class BtnGroup extends JPanel {
             this.add(btns[i]);
 
             final int column = i;
-            btns[i].addActionListener(e -> {
-                handler.buttonClick(column);
-            });
+            btns[i].addActionListener(e -> handler.buttonClick(column));
         }
     }
 

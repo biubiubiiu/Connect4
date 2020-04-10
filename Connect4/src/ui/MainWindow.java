@@ -70,7 +70,7 @@ public class MainWindow extends JFrame {
         timeDisplay = new CountdownTimer();
 
         // 按键组
-        panelButtons = new BtnGroup(panelChessBoard);
+        panelButtons = new BtnGroup(Core.COL);
 
         // 添加菜单栏
         menuBar = new MenuBar();
@@ -184,6 +184,12 @@ public class MainWindow extends JFrame {
                     JOptionPane.showMessageDialog(null, result.getMessage());
                     timeDisplay.restartCountdown();
                     panelChessBoard.repaint();
+                    if (panelChessBoard.getCore().getGameStatus() == Core.Status.CONTINUE) {
+                        panelButtons.enableBtns();
+                    }
+                    players[0].reset();
+                    players[1].reset();
+                    players[panelChessBoard.getCore().getCurrPlayer() == Core.Player.PLAYER_1 ? 0 : 1].switchStatus();
                 }
             }
 

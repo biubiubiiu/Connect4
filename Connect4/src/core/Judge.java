@@ -59,9 +59,9 @@ public class Judge {
      * dr[2], dc[2]: ↖
      * dr[3], dc[3]: ↘
      */
-    private static int[][] dr = {{0, 0}, {-1, 1}, {-1, 1}, {1, -1}};
-    private static int[][] dc = {{-1, 1}, {0, 0}, {-1, 1}, {-1, 1}};
-    private static final int N_DIRECTION = dr.length;
+    private static final int[][] DELTA_R = {{0, 0}, {-1, 1}, {-1, 1}, {1, -1}};
+    private static final int[][] DELTA_C = {{-1, 1}, {0, 0}, {-1, 1}, {-1, 1}};
+    private static final int N_DIRECTION = DELTA_R.length;
 
     /**
      * 判断是否连成四子
@@ -102,8 +102,8 @@ public class Judge {
         int nr = r, nc = c;
         int result = 0;
         do {
-            nr += dr[dirc][0];
-            nc += dc[dirc][0];
+            nr += DELTA_R[dirc][0];
+            nc += DELTA_C[dirc][0];
             result++;
             // 如果(nr, nc)在棋盘范围内，并且与当前(r,c)处棋子颜色相同
             // 则继续往后查看
@@ -111,8 +111,8 @@ public class Judge {
         nr = r;
         nc = c;
         do {
-            nr += dr[dirc][1];
-            nc += dc[dirc][1];
+            nr += DELTA_R[dirc][1];
+            nc += DELTA_C[dirc][1];
             result++;
         } while (withinBoard(board, nr, nc) && board[nr][nc] == board[r][c]);
         return result - 1;
