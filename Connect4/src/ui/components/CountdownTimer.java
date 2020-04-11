@@ -14,7 +14,7 @@ public class CountdownTimer extends JPanel {
         /**
          * 计时器超时的回调函数
          */
-        void run();
+        void timeout();
     }
 
     /**
@@ -40,9 +40,10 @@ public class CountdownTimer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 current -= ONE_SEC;
                 display.setText(timeFormat(current));
+
                 if (current <= 0) {
                     timer.stop();
-                    callback.run();
+                    callback.timeout();
                 }
             }
         });
@@ -72,7 +73,11 @@ public class CountdownTimer extends JPanel {
         timer.stop();
     }
 
-    public void setTimeoutCallback(TimeoutCallback callback) {
+    public void continueCountdown(){
+        timer.start();
+    }
+
+    public void setHandler(TimeoutCallback callback) {
         this.callback = callback;
     }
 

@@ -3,8 +3,8 @@ package ui;
 import common.CommonReturnType;
 import core.Core;
 import core.GameControl;
+import presenter.Presenter;
 import ui.components.*;
-import utils.ArchiveManager;
 
 import javax.swing.*;
 
@@ -31,6 +31,9 @@ public class MainWindow extends JFrame {
     private CountdownTimer timeDisplay;
     private BtnGroup panelButtons;
     private MenuBar menuBar;
+    private Settings settings;
+
+    private Presenter presenter;
 
     public MainWindow() {
         super("Connect4");
@@ -39,6 +42,7 @@ public class MainWindow extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        initPresenter();
         initComponents();
         initLayout();
         initEventHandler();
@@ -57,14 +61,15 @@ public class MainWindow extends JFrame {
 
         // 棋盘组件
         panelChessBoard = new Board();
-        panelChessBoard.setCore(new GameControl());
 
         // 玩家信息组件
         players = new PlayerPanel[2];
         players[0] = new PlayerPanel("Player 1");
         players[1] = new PlayerPanel("Player 2");
         //玩家1先手
-        players[0].switchStatus();
+        players[0].reset();
+        players[1].reset();
+        players[0].toggle();
 
         //计时器组件
         timeDisplay = new CountdownTimer();
@@ -75,6 +80,10 @@ public class MainWindow extends JFrame {
         // 添加菜单栏
         menuBar = new MenuBar();
         this.setJMenuBar(menuBar);
+
+        // 设置页
+        settings = new Settings();
+        settings.setVisible(false);
     }
 
     /**
@@ -146,93 +155,104 @@ public class MainWindow extends JFrame {
      * 设置各组件的事件处理方法
      */
     private void initEventHandler() {
-        timeDisplay.setTimeoutCallback(() -> {
-                    JOptionPane.showMessageDialog(null,
-                            panelChessBoard.getCore().getCurrPlayer() + " 超时了!");
-                    panelChessBoard.getCore().setGameState(Core.Status.FAIL);
-                }
-        );
-
-        menuBar.setHandler(new MenuBar.MenuBarEvent() {
-            @Override
-            public void newGame() {
-                panelChessBoard.getCore().reset();
-                panelChessBoard.repaint();
-                panelButtons.enableBtns();
-                players[0].reset();
-                players[1].reset();
-                players[0].switchStatus();
-                timeDisplay.restartCountdown();
-            }
-
-            @Override
-            public void saveGame() {
-                CommonReturnType result = ArchiveManager.saveArchive(panelChessBoard.getCore());
-                if (result.getStatus() == CommonReturnType.FAIL) {
-                    JOptionPane.showMessageDialog(null, result.getMessage(), "save", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, result.getMessage());
-                }
-            }
-
-            @Override
-            public void loadArchive() {
-                CommonReturnType result = ArchiveManager.loadArchive(panelChessBoard.getCore());
-                if (result.getStatus() == CommonReturnType.FAIL) {
-                    JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, result.getMessage());
-                    timeDisplay.restartCountdown();
-                    panelChessBoard.repaint();
-                    if (panelChessBoard.getCore().getGameStatus() == Core.Status.CONTINUE) {
-                        panelButtons.enableBtns();
-                    }
-                    players[0].reset();
-                    players[1].reset();
-                    players[panelChessBoard.getCore().getCurrPlayer() == Core.Player.PLAYER_1 ? 0 : 1].switchStatus();
-                }
-            }
-
-            @Override
-            public void exit() {
-                System.exit(0);
-            }
-        });
-
-        panelButtons.setHandler(i -> {
-            if (panelChessBoard.getCore().getGameStatus() != Core.Status.CONTINUE) {
-                return;
-            }
-            panelChessBoard.getCore().dropAt(i);
-            panelChessBoard.repaint();
-
-            switch (panelChessBoard.getCore().getGameStatus()) {
-                case WIN:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
-                    panelButtons.disableBtns();
-                    break;
-                case FAIL:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, "It's a Draw!");
-                    panelButtons.disableBtns();
-                    break;
-                case CONTINUE:
-                    //交换玩家
-                    panelChessBoard.getCore().switchPlayer();
-                    players[0].switchStatus();
-                    players[1].switchStatus();
-                    timeDisplay.restartCountdown();
-                    break;
-                default:
-                    break;
-            }
-        });
+        timeDisplay.setHandler(presenter);
+        menuBar.setHandler(presenter);
+        panelButtons.setHandler(presenter);
+        settings.setHandler(presenter);
     }
 
+    public void onLoadArchiveFinish(CommonReturnType result, int playerNum) {
+        stopClock();
+        if (result.getStatus() == CommonReturnType.FAIL) {
+            JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, result.getMessage());
+            timeDisplay.restartCountdown();
+            panelChessBoard.repaint();
+            players[0].reset();
+            players[1].reset();
+            players[playerNum].toggle();
+        }
+        continueClock();
+    }
 
-    public static void main(String[] args) {
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.setVisible(true);
+    /**
+     * 初始化 Presenter
+     */
+    private void initPresenter() {
+        this.presenter = new Presenter(this, new GameControl());
+    }
+
+    public void onTimeout(String playerName) {
+        JOptionPane.showMessageDialog(null,
+                playerName + " 超时了!\n请重新开始游戏");
+        panelButtons.disableBtns();
+    }
+
+    public void onNewGame() {
+        panelButtons.enableBtns();
+        players[1].switchRole(Core.Player.PLAYER_2.isAi());
+        players[0].reset();
+        players[1].reset();
+        players[0].toggle();
+        timeDisplay.restartCountdown();
+    }
+
+    public void onSaveFinish(CommonReturnType result) {
+        stopClock();
+        if (result.getStatus() == CommonReturnType.FAIL) {
+            JOptionPane.showMessageDialog(null, result.getMessage(), "save", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, result.getMessage());
+        }
+        continueClock();
+    }
+
+    public void enableComponents() {
+        panelButtons.enableBtns();
+        timeDisplay.restartCountdown();
+    }
+
+    public void disableComponents() {
+        panelButtons.disableBtns();
+        timeDisplay.stopCountdown();
+    }
+
+    public void refreshBoard(int[][] board) {
+        this.panelChessBoard.setBoard(board);
+        this.panelChessBoard.repaint();
+    }
+
+    public void onPlayerSwitch(int playerNum) {
+        players[0].reset();
+        players[1].reset();
+        players[playerNum].toggle();
+        timeDisplay.restartCountdown();
+    }
+
+    public void onGameOver(String playerName, boolean isDraw) {
+        if (!isDraw) {
+            JOptionPane.showMessageDialog(null, playerName + " wins!");
+        } else {
+            JOptionPane.showMessageDialog(null, "It's a Draw!");
+        }
+        disableComponents();
+    }
+
+    public void setPlayer2Ai(boolean isAi) {
+        players[1].switchRole(isAi);
+    }
+
+    public void openSettings() {
+        stopClock();
+        settings.setVisible(true);
+    }
+
+    public void stopClock(){
+        timeDisplay.stopCountdown();
+    }
+
+    public void continueClock(){
+        timeDisplay.continueCountdown();
     }
 }

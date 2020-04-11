@@ -26,14 +26,14 @@ public class BtnGroup extends JPanel {
         void buttonClick(int i);
     }
 
-    public BtnGroup(int nums) {
+    public BtnGroup(int btnNum) {
 
         //按键采用GridLayout布局
-        GridLayout gridLayoutForButtons = new GridLayout(1, nums, Board.GAP, 0);
+        GridLayout gridLayoutForButtons = new GridLayout(1, btnNum, Board.GAP, 0);
         this.setLayout(gridLayoutForButtons);
         this.setPreferredSize(new Dimension(Board.WIDTH, HEIGHT));
-        btns = new JButton[nums];
-        for (int i = 0; i < nums; i++) {
+        btns = new JButton[btnNum];
+        for (int i = 0; i < btnNum; i++) {
             btns[i] = new JButton("↓");
             btns[i].setSize(Board.SQUARE_SIZE, HEIGHT);
             this.add(btns[i]);

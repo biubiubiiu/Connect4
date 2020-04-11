@@ -61,7 +61,7 @@ public class Judge {
      */
     private static final int[][] DELTA_R = {{0, 0}, {-1, 1}, {-1, 1}, {1, -1}};
     private static final int[][] DELTA_C = {{-1, 1}, {0, 0}, {-1, 1}, {-1, 1}};
-    private static final int N_DIRECTION = DELTA_R.length;
+    public static final int N_DIRECTION = DELTA_R.length;
 
     /**
      * 判断是否连成四子
@@ -97,7 +97,7 @@ public class Judge {
      * @param c     棋子所在列
      * @return 以(r, c)为中心的最大连续棋子数
      */
-    private static int count(int[][] board, int dirc, int r, int c) {
+    public static int count(int[][] board, int dirc, int r, int c) {
         // nr, nc表示下一个查看位置
         int nr = r, nc = c;
         int result = 0;

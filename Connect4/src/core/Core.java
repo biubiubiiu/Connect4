@@ -38,16 +38,33 @@ public interface Core {
         PLAYER_1(1), PLAYER_2(2);
 
         private final int value;
+        private boolean isAi;
 
         Player(int val) {
             this.value = val;
+            this.isAi = false;
         }
 
         public int value() {
             return this.value;
         }
 
-        Player next() {
+        public boolean isAi() {
+            return this.isAi;
+        }
+
+        public void setAiPlayer() {
+            System.out.println("set to ai");
+            this.isAi = true;
+
+            //修改playerPanel配置
+        }
+
+        public void setHumanPlayer() {
+            this.isAi = false;
+        }
+
+        public Player next() {
             return this == PLAYER_1 ? PLAYER_2 : PLAYER_1;
         }
 
@@ -102,8 +119,9 @@ public interface Core {
      * 在某一列落子
      *
      * @param column 落子列
+     * @return 本次操作是否成功
      */
-    void dropAt(int column);
+    boolean dropAt(int column);
 
     /**
      * 返回棋盘状态
@@ -125,6 +143,15 @@ public interface Core {
      * @return 当前玩家
      */
     Player getCurrPlayer();
+
+    /**
+     * 更新当前游戏状态
+     * 在每次落子后触发
+     *
+     * @param r 上次落子所在行
+     * @param c 上次落子所在列
+     */
+    void updateGameStatus(int r, int c);
 
     /**
      * 重置棋盘
@@ -156,4 +183,34 @@ public interface Core {
      * @param gameState 游戏状态
      */
     void setGameState(Status gameState);
+
+    enum GAME_MODE {
+        /**
+         * 游戏模式
+         * <p>
+         * HUMAN_VS_HUMAN: pvp
+         * HUMAN_VS_AI: pve
+         */
+        HUMAN_VS_HUMAN(0, "Human Vs Human"), HUMAN_VS_AI(1, "Human Vs AI");
+
+        public final int value;
+        public final String description;
+
+        GAME_MODE(int val, String description) {
+            this.value = val;
+            this.description = description;
+        }
+    }
+
+    /**
+     * 设置 minimax 算法的搜索深度
+     *
+     * @param depth 最大深度
+     */
+    void setSearchDepth(int depth);
+
+    /**
+     * 完成 ai 移动
+     */
+    void aiMove();
 }
