@@ -38,30 +38,30 @@ public interface Core {
         PLAYER_1(1), PLAYER_2(2);
 
         private final int value;
-        private boolean isAI;
+        private boolean isAi;
 
         Player(int val) {
             this.value = val;
-            this.isAI = false;
+            this.isAi = false;
         }
 
         public int value() {
             return this.value;
         }
 
-        public boolean isAI() {
-            return this.isAI;
+        public boolean isAi() {
+            return this.isAi;
         }
 
-        public void setAIPlayer() {
+        public void setAiPlayer() {
             System.out.println("set to ai");
-            this.isAI = true;
+            this.isAi = true;
 
             //修改playerPanel配置
         }
 
         public void setHumanPlayer() {
-            this.isAI = false;
+            this.isAi = false;
         }
 
         public Player next() {

@@ -3,17 +3,21 @@ package presenter;
 import common.CommonReturnType;
 import core.Core;
 import ui.MainWindow;
+import ui.components.BtnGroup;
+import ui.components.CountdownTimer;
+import ui.components.MenuBar;
+import ui.components.Settings;
 import utils.ArchiveManager;
 
 import java.util.concurrent.*;
 
 /**
- * @author 19471
+ * @author Raymond
  */
-public class Presenter {
+public class Presenter implements CountdownTimer.TimeoutCallback, MenuBar.MenuBarEvent, BtnGroup.BtnEvent, Settings.SettingsEvent {
 
-    private MainWindow window;
-    private Core core;
+    private final MainWindow window;
+    private final Core core;
     private final ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1,
             0L, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<>(),
@@ -24,37 +28,41 @@ public class Presenter {
         this.core = core;
     }
 
+    @Override
     public void newGame() {
         core.reset();
         window.onNewGame();
         window.refreshBoard(core.getBoard());
     }
 
+    @Override
     public void saveGame() {
         CommonReturnType result = ArchiveManager.saveArchive(core);
         window.onSaveFinish(result);
     }
 
+    @Override
     public void loadArchive() {
         CommonReturnType result = ArchiveManager.loadArchive(core);
-        window.onLoadArchiveFinish(result);
+        window.onLoadArchiveFinish(result, core.getCurrPlayer() == Core.Player.PLAYER_1 ? 0 : 1);
         if (core.getGameStatus() == Core.Status.CONTINUE) {
             window.enableComponents();
         }
         window.refreshBoard(core.getBoard());
     }
 
-    public void dropAt(int col) {
-        boolean succeed = core.dropAt(col);
-        if(succeed) {
-            window.refreshBoard(core.getBoard());
-            checkStatus();
-            checkAiMove();
-        }
+    @Override
+    public void exit() {
+        System.exit(0);
     }
 
-    public void checkAiMove() {
-        if(!core.getCurrPlayer().isAI()) {
+    @Override
+    public void viewSettings() {
+        window.openSettings();
+    }
+
+    private void checkAiMove() {
+        if(!core.getCurrPlayer().isAi()) {
             window.enableComponents();
             return;
         }
@@ -77,18 +85,16 @@ public class Presenter {
         }
     }
 
+    @Override
     public void timeout() {
         core.setGameState(Core.Status.FAIL);
-        window.onTimeout();
+        window.onTimeout(core.getCurrPlayer().toString());
     }
 
-    public Core.Player getCurrentPlayer() {
-        return core.getCurrPlayer();
-    }
-
+    @Override
     public void changeGameMode(int mode) {
         if (mode == Core.GAME_MODE.HUMAN_VS_AI.value) {
-            Core.Player.PLAYER_2.setAIPlayer();
+            Core.Player.PLAYER_2.setAiPlayer();
             window.setPlayer2Ai(true);
         } else {
             Core.Player.PLAYER_2.setHumanPlayer();
@@ -96,7 +102,18 @@ public class Presenter {
         }
     }
 
+    @Override
     public void changeDepth(int depth) {
         core.setSearchDepth(depth);
+    }
+
+    @Override
+    public void buttonClick(int i) {
+        boolean succeed = core.dropAt(i);
+        if(succeed) {
+            window.refreshBoard(core.getBoard());
+            checkStatus();
+            checkAiMove();
+        }
     }
 }

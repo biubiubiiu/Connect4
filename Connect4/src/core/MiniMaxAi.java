@@ -6,7 +6,7 @@ import java.util.Random;
  * @author Raymond
  * @reference https://github.com/Iptamenos/Connect4
  */
-public class MiniMaxAI {
+public class MiniMaxAi {
 
     private Core.Player aiPlayer;
 
@@ -18,10 +18,10 @@ public class MiniMaxAI {
     /**
      * 可以落子的列
      */
-    private boolean[] validColumns;
-    private int[][] memo;
+    private final boolean[] validColumns;
+    private final int[][] memo;
 
-    public MiniMaxAI() {
+    public MiniMaxAi() {
         this.memo = new int[Core.ROW][Core.COL];
         this.validColumns = new boolean[Core.COL];
     }

@@ -7,7 +7,7 @@ public class GameControl implements Core {
     private int[][] board;
     private Player currPlayer;
     private Status gameState;
-    private MiniMaxAI ai;
+    private final MiniMaxAi ai;
 
     public GameControl() {
         this.board = new int[ROW][COL];
@@ -16,7 +16,7 @@ public class GameControl implements Core {
         this.currPlayer = Player.PLAYER_1;
 
         this.gameState = Status.CONTINUE;
-        this.ai = new MiniMaxAI();
+        this.ai = new MiniMaxAi();
     }
 
     @Override

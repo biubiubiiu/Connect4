@@ -155,51 +155,13 @@ public class MainWindow extends JFrame {
      * 设置各组件的事件处理方法
      */
     private void initEventHandler() {
-        timeDisplay.setTimeoutCallback(() -> presenter.timeout());
-
-        menuBar.setHandler(new MenuBar.MenuBarEvent() {
-            @Override
-            public void newGame() {
-                presenter.newGame();
-            }
-
-            @Override
-            public void saveGame() {
-                presenter.saveGame();
-            }
-
-            @Override
-            public void loadArchive() {
-                presenter.loadArchive();
-            }
-
-            @Override
-            public void exit() {
-                System.exit(0);
-            }
-
-            @Override
-            public void viewSettings() {
-                settings.setVisible(true);
-            }
-        });
-
-        panelButtons.setHandler(i -> presenter.dropAt(i));
-
-        settings.setHandler(new Settings.SettingsEvent() {
-            @Override
-            public void changeGameMode(int mode) {
-                presenter.changeGameMode(mode);
-            }
-
-            @Override
-            public void changeDepth(int depth) {
-                presenter.changeDepth(depth);
-            }
-        });
+        timeDisplay.setHandler(presenter);
+        menuBar.setHandler(presenter);
+        panelButtons.setHandler(presenter);
+        settings.setHandler(presenter);
     }
 
-    public void onLoadArchiveFinish(CommonReturnType result) {
+    public void onLoadArchiveFinish(CommonReturnType result, int playerNum) {
         if (result.getStatus() == CommonReturnType.FAIL) {
             JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -208,7 +170,7 @@ public class MainWindow extends JFrame {
             panelChessBoard.repaint();
             players[0].reset();
             players[1].reset();
-            players[presenter.getCurrentPlayer() == Core.Player.PLAYER_1 ? 0 : 1].toggle();
+            players[playerNum].toggle();
         }
     }
 
@@ -219,15 +181,15 @@ public class MainWindow extends JFrame {
         this.presenter = new Presenter(this, new GameControl());
     }
 
-    public void onTimeout() {
+    public void onTimeout(String playerName) {
         JOptionPane.showMessageDialog(null,
-                presenter.getCurrentPlayer() + " 超时了!");
+                playerName + " 超时了!");
         panelButtons.disableBtns();
     }
 
     public void onNewGame() {
         panelButtons.enableBtns();
-        players[1].switchRole(Core.Player.PLAYER_2.isAI());
+        players[1].switchRole(Core.Player.PLAYER_2.isAi());
         players[0].reset();
         players[1].reset();
         players[0].toggle();
@@ -275,5 +237,9 @@ public class MainWindow extends JFrame {
 
     public void setPlayer2Ai(boolean isAi) {
         players[1].switchRole(isAi);
+    }
+
+    public void openSettings() {
+        settings.setVisible(true);
     }
 }
