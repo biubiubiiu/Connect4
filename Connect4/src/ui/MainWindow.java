@@ -185,7 +185,7 @@ public class MainWindow extends JFrame {
 
     public void onTimeout(String playerName) {
         JOptionPane.showMessageDialog(null,
-                playerName + " 超时了!");
+                playerName + " 超时了!\n请重新开始游戏");
         panelButtons.disableBtns();
     }
 
