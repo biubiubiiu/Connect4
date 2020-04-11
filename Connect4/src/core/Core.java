@@ -207,5 +207,5 @@ public interface Core {
     /**
      * 事件流
      */
-    void checkStatus();
+    //void checkStatus();
 }

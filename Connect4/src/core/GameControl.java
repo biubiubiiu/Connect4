@@ -101,20 +101,27 @@ public class GameControl implements Core {
     @Override
     public void aiMove() {
         System.out.println("ai moving");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         int col = ai.generateMove(board);
         dropAt(col);
         switchPlayer();
     }
 
-    @Override
-    public void checkStatus() {
-        if (gameState == Status.CONTINUE) {
-            switchPlayer();
-            if (this.currPlayer.isAI()) {
-                aiMove();
-            }
-        }
-    }
+//    @Override
+//    public void checkStatus() {
+//        if (gameState == Status.CONTINUE) {
+//            switchPlayer();
+//            if (this.currPlayer.isAI()) {
+//                aiMove();
+//            }
+//        }
+//    }
 
     @Override
     public void switchPlayer() {

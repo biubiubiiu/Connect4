@@ -65,6 +65,8 @@ public class MainWindow extends JFrame {
         players[0] = new PlayerPanel("Player 1");
         players[1] = new PlayerPanel("Player 2");
         //玩家1先手
+        players[0].reset();
+        players[1].reset();
         players[0].switchStatus();
 
         //计时器组件
@@ -219,29 +221,40 @@ public class MainWindow extends JFrame {
             }
             panelChessBoard.getCore().dropAt(i);
             panelChessBoard.repaint();
-            panelChessBoard.getCore().checkStatus();
-            panelChessBoard.repaint();
+            panelChessBoard.getCore().switchPlayer();
 
-            switch (panelChessBoard.getCore().getGameStatus()) {
-                case WIN:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
-                    panelButtons.disableBtns();
-                    break;
-                case FAIL:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, "It's a Draw!");
-                    panelButtons.disableBtns();
-                    break;
-                case CONTINUE:
-                    //交换玩家
-                    players[0].switchStatus();
-                    players[1].switchStatus();
-                    timeDisplay.restartCountdown();
-                    break;
-                default:
-                    break;
-            }
+            boolean flag = false;
+            do {
+                flag = false;
+
+                switch (panelChessBoard.getCore().getGameStatus()) {
+                    case WIN:
+                        timeDisplay.stopCountdown();
+                        JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
+                        panelButtons.disableBtns();
+                        break;
+                    case FAIL:
+                        timeDisplay.stopCountdown();
+                        JOptionPane.showMessageDialog(null, "It's a Draw!");
+                        panelButtons.disableBtns();
+                        break;
+                    case CONTINUE:
+                        //交换玩家
+                        players[0].switchStatus();
+                        players[1].switchStatus();
+                        timeDisplay.restartCountdown();
+
+                        if (panelChessBoard.getCore().getCurrPlayer().isAI()) {
+                            panelChessBoard.getCore().aiMove();
+                            panelChessBoard.repaint();
+                            flag = true;
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
+            }while (flag);
         });
 
         settings.setHandler(new Settings.SettingsEvent() {
