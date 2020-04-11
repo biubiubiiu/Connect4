@@ -20,9 +20,9 @@ public class GameControl implements Core {
     }
 
     @Override
-    public void dropAt(int column) {
+    public boolean dropAt(int column) {
         if (!Judge.judgeBorder(column, board[0].length)) {
-            return;
+            return false;
         }
         int top = -1;
         while (top < board.length - 1 && board[top + 1][column] == GridType.EMPTY.value()) {
@@ -30,13 +30,11 @@ public class GameControl implements Core {
         }
         if (top == -1) {
             // 没有空位
-            return;
+            return true;
         }
         board[top][column] = GridType.of(currPlayer);
-
-        // 每次落子后判断一次游戏状态
-        // (top, column) 为本次落子位置
-        this.gameState = Judge.judge(this.board, top, column);
+        updateGameStatus(top, column);
+        return true;
     }
 
     @Override
@@ -52,6 +50,16 @@ public class GameControl implements Core {
     @Override
     public Player getCurrPlayer() {
         return this.currPlayer;
+    }
+
+    @Override
+    public void updateGameStatus(int r, int c) {
+        // 每次落子后判断一次游戏状态
+        // (top, column) 为本次落子位置
+        this.gameState = Judge.judge(this.board, r, c);
+        if(this.gameState == Status.CONTINUE) {
+            switchPlayer();
+        }
     }
 
     @Override
@@ -102,26 +110,9 @@ public class GameControl implements Core {
     public void aiMove() {
         System.out.println("ai moving");
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         int col = ai.generateMove(board);
         dropAt(col);
-        switchPlayer();
     }
-
-//    @Override
-//    public void checkStatus() {
-//        if (gameState == Status.CONTINUE) {
-//            switchPlayer();
-//            if (this.currPlayer.isAI()) {
-//                aiMove();
-//            }
-//        }
-//    }
 
     @Override
     public void switchPlayer() {

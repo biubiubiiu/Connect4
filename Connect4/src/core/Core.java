@@ -119,8 +119,9 @@ public interface Core {
      * 在某一列落子
      *
      * @param column 落子列
+     * @return 本次操作是否成功
      */
-    void dropAt(int column);
+    boolean dropAt(int column);
 
     /**
      * 返回棋盘状态
@@ -142,6 +143,15 @@ public interface Core {
      * @return 当前玩家
      */
     Player getCurrPlayer();
+
+    /**
+     * 更新当前游戏状态
+     * 在每次落子后触发
+     *
+     * @param r 上次落子所在行
+     * @param c 上次落子所在列
+     */
+    void updateGameStatus(int r, int c);
 
     /**
      * 重置棋盘
@@ -203,9 +213,4 @@ public interface Core {
      * 完成 ai 移动
      */
     void aiMove();
-
-    /**
-     * 事件流
-     */
-    //void checkStatus();
 }

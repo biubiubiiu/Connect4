@@ -86,7 +86,7 @@ public class Settings extends JFrame {
                 handler.changeDepth(maxDepthDropDown.getSelectedIndex() + 1);
             }
             JOptionPane.showMessageDialog(null,
-                    "Game settings have been changed.\nThe changes will be applied in the next game.",
+                    "Game settings have been changed.\nPlease start a new game.",
                     "", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         });

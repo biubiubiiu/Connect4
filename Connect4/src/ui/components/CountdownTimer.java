@@ -17,14 +17,6 @@ public class CountdownTimer extends JPanel {
         void run();
     }
 
-    public interface AiCallback {
-        /**
-         * 在13s时检测当前是否是ai
-         * 若是则调用aiMove
-         */
-        void run();
-    }
-
     /**
      * 计时时长：15000ms
      */
@@ -36,7 +28,6 @@ public class CountdownTimer extends JPanel {
     private final Timer timer;
 
     private TimeoutCallback callback;
-    private AiCallback aiCallback;
     private final ImageIcon img;
 
     public CountdownTimer() {
@@ -49,10 +40,6 @@ public class CountdownTimer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 current -= ONE_SEC;
                 display.setText(timeFormat(current));
-
-                if (current == 13 * ONE_SEC) {
-                    aiCallback.run();
-                }
 
                 if (current <= 0) {
                     timer.stop();
@@ -88,10 +75,6 @@ public class CountdownTimer extends JPanel {
 
     public void setTimeoutCallback(TimeoutCallback callback) {
         this.callback = callback;
-    }
-
-    public void setAiCallback(AiCallback callback) {
-        this.aiCallback = callback;
     }
 
     /**

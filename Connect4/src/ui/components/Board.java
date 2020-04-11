@@ -27,10 +27,11 @@ public class Board extends JPanel {
     /**
      * 与核心逻辑的接口
      */
-    private Core core;
 
-    public Core getCore() {
-        return core;
+    private int[][] board;
+
+    public void setBoard(int[][] board) {
+        this.board = board;
     }
 
     public Board() {
@@ -47,7 +48,6 @@ public class Board extends JPanel {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-        int[][] boardStatus = core.getBoard();
         for (int r = 0; r < Core.ROW; r++) {
             for (int c = 0; c < Core.COL; c++) {
                 if ((r + c) % 2 != 0) {
@@ -57,16 +57,12 @@ public class Board extends JPanel {
                 }
                 g.fillRect((PADDING_HORIZONTAL + c * (SQUARE_SIZE + GAP)), (PADDING_VERTICAL + r * (SQUARE_SIZE + GAP)), SQUARE_SIZE, SQUARE_SIZE);
 
-                if (boardStatus[r][c] != Core.GridType.EMPTY.value()) {
-                    g.setColor(boardStatus[r][c] == Core.GridType.PLAYER_1.value() ? CHESS_COLOR1 : CHESS_COLOR2);
+                if (board != null && board[r][c] != Core.GridType.EMPTY.value()) {
+                    g.setColor(board[r][c] == Core.GridType.PLAYER_1.value() ? CHESS_COLOR1 : CHESS_COLOR2);
                     g.fillOval((PADDING_HORIZONTAL + c * (SQUARE_SIZE + GAP)), (PADDING_VERTICAL + r * (SQUARE_SIZE + GAP)), SQUARE_SIZE, SQUARE_SIZE);
                 }
 
             }
         }
-    }
-
-    public void setCore(Core core) {
-        this.core = core;
     }
 }

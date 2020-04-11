@@ -42,8 +42,8 @@ public class PlayerPanel extends JPanel {
 
     public void switchRole(boolean isAi){
         Border border1 = BorderFactory.createBevelBorder(1);
-        java.net.URL url = null;
-        Border border = null;
+        java.net.URL url;
+        Border border;
 
         if (isAi){
             url = this.getClass().getResource("/robot2.png");
@@ -62,7 +62,7 @@ public class PlayerPanel extends JPanel {
     }
 
 
-    public void switchStatus() {
+    public void toggle() {
         if (isTurn.isVisible()) {
             isTurn.setVisible(false);
         } else {

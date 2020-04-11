@@ -146,7 +146,7 @@ public class MiniMaxAI {
      * @return 评估得分
      */
     public int evaluate(int[][] board) {
-        // +100 'Player1' wins, -100 'Player2' wins,
+        // +50000 'Player1' wins, -50000 'Player2' wins,
         // +10 for each three 'Player1' in a row, -10 for each three 'Player2' in a row,
         // +1 for each two 'Player1' in a row, -1 for each two 'Player2' in a row
         int player1Score = 0;
@@ -156,7 +156,7 @@ public class MiniMaxAI {
             for (int c = 0; c < Core.COL; c++) {
                 for (int dirc = 0; dirc < Judge.N_DIRECTION; dirc++) {
                     int count = Judge.count(board, dirc, r, c);
-                    int score = (int) Math.pow(10, count - 1);
+                    int score = (count >= 4) ? 50000 : (int) Math.pow(10, count - 2);
                     if (board[r][c] == Core.Player.PLAYER_1.value()) {
                         player1Score += score;
                     } else if (board[r][c] == Core.Player.PLAYER_2.value()) {

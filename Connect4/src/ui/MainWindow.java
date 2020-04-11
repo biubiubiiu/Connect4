@@ -3,8 +3,8 @@ package ui;
 import common.CommonReturnType;
 import core.Core;
 import core.GameControl;
+import presenter.Presenter;
 import ui.components.*;
-import utils.ArchiveManager;
 
 import javax.swing.*;
 
@@ -33,6 +33,8 @@ public class MainWindow extends JFrame {
     private MenuBar menuBar;
     private Settings settings;
 
+    private Presenter presenter;
+
     public MainWindow() {
         super("Connect4");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -40,6 +42,7 @@ public class MainWindow extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        initPresenter();
         initComponents();
         initLayout();
         initEventHandler();
@@ -58,7 +61,6 @@ public class MainWindow extends JFrame {
 
         // 棋盘组件
         panelChessBoard = new Board();
-        panelChessBoard.setCore(new GameControl());
 
         // 玩家信息组件
         players = new PlayerPanel[2];
@@ -67,7 +69,7 @@ public class MainWindow extends JFrame {
         //玩家1先手
         players[0].reset();
         players[1].reset();
-        players[0].switchStatus();
+        players[0].toggle();
 
         //计时器组件
         timeDisplay = new CountdownTimer();
@@ -153,83 +155,22 @@ public class MainWindow extends JFrame {
      * 设置各组件的事件处理方法
      */
     private void initEventHandler() {
-        timeDisplay.setTimeoutCallback(() -> {
-                    JOptionPane.showMessageDialog(null,
-                            panelChessBoard.getCore().getCurrPlayer() + " 超时了!");
-                    panelChessBoard.getCore().setGameState(Core.Status.FAIL);
-                }
-        );
-
-        timeDisplay.setAiCallback(() -> {
-            if (!panelChessBoard.getCore().getCurrPlayer().isAI()) {
-                return;
-            }
-
-            panelChessBoard.getCore().aiMove();
-            panelChessBoard.repaint();
-
-            switch (panelChessBoard.getCore().getGameStatus()) {
-                case WIN:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null,
-                            panelChessBoard.getCore().getCurrPlayer() + " wins!");
-                    panelButtons.disableBtns();
-                    break;
-                case FAIL:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, "It's a Draw!");
-                    panelButtons.disableBtns();
-                    break;
-                case CONTINUE:
-                    //交换玩家
-                    players[0].switchStatus();
-                    players[1].switchStatus();
-                    timeDisplay.restartCountdown();
-                    break;
-                default:
-                    break;
-            }
-        });
+        timeDisplay.setTimeoutCallback(() -> presenter.timeout());
 
         menuBar.setHandler(new MenuBar.MenuBarEvent() {
             @Override
             public void newGame() {
-                panelChessBoard.getCore().reset();
-                panelChessBoard.repaint();
-                panelButtons.enableBtns();
-                players[1].switchRole(Core.Player.PLAYER_2.isAI());
-                players[0].reset();
-                players[1].reset();
-                players[0].switchStatus();
-                timeDisplay.restartCountdown();
+                presenter.newGame();
             }
 
             @Override
             public void saveGame() {
-                CommonReturnType result = ArchiveManager.saveArchive(panelChessBoard.getCore());
-                if (result.getStatus() == CommonReturnType.FAIL) {
-                    JOptionPane.showMessageDialog(null, result.getMessage(), "save", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, result.getMessage());
-                }
+                presenter.saveGame();
             }
 
             @Override
             public void loadArchive() {
-                CommonReturnType result = ArchiveManager.loadArchive(panelChessBoard.getCore());
-                if (result.getStatus() == CommonReturnType.FAIL) {
-                    JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, result.getMessage());
-                    timeDisplay.restartCountdown();
-                    panelChessBoard.repaint();
-                    if (panelChessBoard.getCore().getGameStatus() == Core.Status.CONTINUE) {
-                        panelButtons.enableBtns();
-                    }
-                    players[0].reset();
-                    players[1].reset();
-                    players[panelChessBoard.getCore().getCurrPlayer() == Core.Player.PLAYER_1 ? 0 : 1].switchStatus();
-                }
+                presenter.loadArchive();
             }
 
             @Override
@@ -243,53 +184,96 @@ public class MainWindow extends JFrame {
             }
         });
 
-        panelButtons.setHandler(i -> {
-            if (panelChessBoard.getCore().getCurrPlayer().isAI()) {
-                return;
-            }
-            if (panelChessBoard.getCore().getGameStatus() != Core.Status.CONTINUE) {
-                return;
-            }
-            panelChessBoard.getCore().dropAt(i);
-            panelChessBoard.repaint();
-            panelChessBoard.getCore().switchPlayer();
-
-            switch (panelChessBoard.getCore().getGameStatus()) {
-                case WIN:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
-                    panelButtons.disableBtns();
-                    break;
-                case FAIL:
-                    timeDisplay.stopCountdown();
-                    JOptionPane.showMessageDialog(null, "It's a Draw!");
-                    panelButtons.disableBtns();
-                    break;
-                case CONTINUE:
-                    //交换玩家
-                    players[0].switchStatus();
-                    players[1].switchStatus();
-                    timeDisplay.restartCountdown();
-                    break;
-                default:
-                    break;
-            }
-        });
+        panelButtons.setHandler(i -> presenter.dropAt(i));
 
         settings.setHandler(new Settings.SettingsEvent() {
             @Override
             public void changeGameMode(int mode) {
-                if (mode == Core.GAME_MODE.HUMAN_VS_AI.value) {
-                    Core.Player.PLAYER_2.setAIPlayer();
-                } else {
-                    Core.Player.PLAYER_2.setHumanPlayer();
-                }
+                presenter.changeGameMode(mode);
             }
 
             @Override
             public void changeDepth(int depth) {
-                panelChessBoard.getCore().setSearchDepth(depth);
+                presenter.changeDepth(depth);
             }
         });
+    }
+
+    public void onLoadArchiveFinish(CommonReturnType result) {
+        if (result.getStatus() == CommonReturnType.FAIL) {
+            JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, result.getMessage());
+            timeDisplay.restartCountdown();
+            panelChessBoard.repaint();
+            players[0].reset();
+            players[1].reset();
+            players[presenter.getCurrentPlayer() == Core.Player.PLAYER_1 ? 0 : 1].toggle();
+        }
+    }
+
+    /**
+     * 初始化 Presenter
+     */
+    private void initPresenter() {
+        this.presenter = new Presenter(this, new GameControl());
+    }
+
+    public void onTimeout() {
+        JOptionPane.showMessageDialog(null,
+                presenter.getCurrentPlayer() + " 超时了!");
+        panelButtons.disableBtns();
+    }
+
+    public void onNewGame() {
+        panelButtons.enableBtns();
+        players[1].switchRole(Core.Player.PLAYER_2.isAI());
+        players[0].reset();
+        players[1].reset();
+        players[0].toggle();
+        timeDisplay.restartCountdown();
+    }
+
+    public void onSaveFinish(CommonReturnType result) {
+        if (result.getStatus() == CommonReturnType.FAIL) {
+            JOptionPane.showMessageDialog(null, result.getMessage(), "save", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, result.getMessage());
+        }
+    }
+
+    public void enableComponents() {
+        panelButtons.enableBtns();
+        timeDisplay.restartCountdown();
+    }
+
+    public void disableComponents() {
+        panelButtons.disableBtns();
+        timeDisplay.stopCountdown();
+    }
+
+    public void refreshBoard(int[][] board) {
+        this.panelChessBoard.setBoard(board);
+        this.panelChessBoard.repaint();
+    }
+
+    public void onPlayerSwitch(int playerNum) {
+        players[0].reset();
+        players[1].reset();
+        players[playerNum].toggle();
+        timeDisplay.restartCountdown();
+    }
+
+    public void onGameOver(String playerName, boolean isDraw) {
+        if (!isDraw) {
+            JOptionPane.showMessageDialog(null, playerName + " wins!");
+        } else {
+            JOptionPane.showMessageDialog(null, "It's a Draw!");
+        }
+        disableComponents();
+    }
+
+    public void setPlayer2Ai(boolean isAi) {
+        players[1].switchRole(isAi);
     }
 }
