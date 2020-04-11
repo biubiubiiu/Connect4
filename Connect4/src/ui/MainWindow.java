@@ -160,6 +160,37 @@ public class MainWindow extends JFrame {
                 }
         );
 
+        timeDisplay.setAiCallback(() -> {
+            if (!panelChessBoard.getCore().getCurrPlayer().isAI()) {
+                return;
+            }
+
+            panelChessBoard.getCore().aiMove();
+            panelChessBoard.repaint();
+
+            switch (panelChessBoard.getCore().getGameStatus()) {
+                case WIN:
+                    timeDisplay.stopCountdown();
+                    JOptionPane.showMessageDialog(null,
+                            panelChessBoard.getCore().getCurrPlayer() + " wins!");
+                    panelButtons.disableBtns();
+                    break;
+                case FAIL:
+                    timeDisplay.stopCountdown();
+                    JOptionPane.showMessageDialog(null, "It's a Draw!");
+                    panelButtons.disableBtns();
+                    break;
+                case CONTINUE:
+                    //交换玩家
+                    players[0].switchStatus();
+                    players[1].switchStatus();
+                    timeDisplay.restartCountdown();
+                    break;
+                default:
+                    break;
+            }
+        });
+
         menuBar.setHandler(new MenuBar.MenuBarEvent() {
             @Override
             public void newGame() {
@@ -223,38 +254,26 @@ public class MainWindow extends JFrame {
             panelChessBoard.repaint();
             panelChessBoard.getCore().switchPlayer();
 
-            boolean flag = false;
-            do {
-                flag = false;
-
-                switch (panelChessBoard.getCore().getGameStatus()) {
-                    case WIN:
-                        timeDisplay.stopCountdown();
-                        JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
-                        panelButtons.disableBtns();
-                        break;
-                    case FAIL:
-                        timeDisplay.stopCountdown();
-                        JOptionPane.showMessageDialog(null, "It's a Draw!");
-                        panelButtons.disableBtns();
-                        break;
-                    case CONTINUE:
-                        //交换玩家
-                        players[0].switchStatus();
-                        players[1].switchStatus();
-                        timeDisplay.restartCountdown();
-
-                        if (panelChessBoard.getCore().getCurrPlayer().isAI()) {
-                            panelChessBoard.getCore().aiMove();
-                            panelChessBoard.repaint();
-                            flag = true;
-                        }
-
-                        break;
-                    default:
-                        break;
-                }
-            }while (flag);
+            switch (panelChessBoard.getCore().getGameStatus()) {
+                case WIN:
+                    timeDisplay.stopCountdown();
+                    JOptionPane.showMessageDialog(null, panelChessBoard.getCore().getCurrPlayer() + " wins!");
+                    panelButtons.disableBtns();
+                    break;
+                case FAIL:
+                    timeDisplay.stopCountdown();
+                    JOptionPane.showMessageDialog(null, "It's a Draw!");
+                    panelButtons.disableBtns();
+                    break;
+                case CONTINUE:
+                    //交换玩家
+                    players[0].switchStatus();
+                    players[1].switchStatus();
+                    timeDisplay.restartCountdown();
+                    break;
+                default:
+                    break;
+            }
         });
 
         settings.setHandler(new Settings.SettingsEvent() {
