@@ -61,6 +61,16 @@ public class Presenter implements CountdownTimer.TimeoutCallback, MenuBar.MenuBa
         window.openSettings();
     }
 
+    @Override
+    public void hangOn() {
+        window.stopClock();
+    }
+
+    @Override
+    public void goOn() {
+        window.continueClock();
+    }
+
     private void checkAiMove() {
         if(!core.getCurrPlayer().isAi()) {
             window.enableComponents();

@@ -21,6 +21,11 @@ public class Settings extends JFrame {
          * @param depth 深度
          */
         void changeDepth(int depth);
+
+        /**
+         * 使计时器继续计时
+         */
+        void goOn();
     }
 
     private JComboBox<String> gameModeDropDown;
@@ -95,5 +100,11 @@ public class Settings extends JFrame {
 
     public void setHandler(SettingsEvent handler) {
         this.handler = handler;
+    }
+
+    @Override
+    public void dispose(){
+        handler.goOn();
+        super.dispose();
     }
 }

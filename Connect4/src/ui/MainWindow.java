@@ -162,6 +162,7 @@ public class MainWindow extends JFrame {
     }
 
     public void onLoadArchiveFinish(CommonReturnType result, int playerNum) {
+        stopClock();
         if (result.getStatus() == CommonReturnType.FAIL) {
             JOptionPane.showMessageDialog(null, result.getMessage(), "load", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -172,6 +173,7 @@ public class MainWindow extends JFrame {
             players[1].reset();
             players[playerNum].toggle();
         }
+        continueClock();
     }
 
     /**
@@ -197,11 +199,13 @@ public class MainWindow extends JFrame {
     }
 
     public void onSaveFinish(CommonReturnType result) {
+        stopClock();
         if (result.getStatus() == CommonReturnType.FAIL) {
             JOptionPane.showMessageDialog(null, result.getMessage(), "save", JOptionPane.WARNING_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, result.getMessage());
         }
+        continueClock();
     }
 
     public void enableComponents() {
@@ -240,6 +244,15 @@ public class MainWindow extends JFrame {
     }
 
     public void openSettings() {
+        stopClock();
         settings.setVisible(true);
+    }
+
+    public void stopClock(){
+        timeDisplay.stopCountdown();
+    }
+
+    public void continueClock(){
+        timeDisplay.continueCountdown();
     }
 }
