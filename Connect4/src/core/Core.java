@@ -56,6 +56,8 @@ public interface Core {
         public void setAIPlayer() {
             System.out.println("set to ai");
             this.isAI = true;
+
+            //修改playerPanel配置
         }
 
         public void setHumanPlayer() {

@@ -164,6 +164,7 @@ public class MainWindow extends JFrame {
                 panelChessBoard.getCore().reset();
                 panelChessBoard.repaint();
                 panelButtons.enableBtns();
+                players[1].switchRole(Core.Player.PLAYER_2.isAI());
                 players[0].reset();
                 players[1].reset();
                 players[0].switchStatus();
