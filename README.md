@@ -19,8 +19,8 @@
 
 ## 游戏截图
 
-![start](.\img\start.png)
+![start](./img/start.png)
 
-![win](.\img\win.png)
+![win](./img/win.png)
 
-![ai](.\img\ai.png)
+![ai](./img/ai.png)
